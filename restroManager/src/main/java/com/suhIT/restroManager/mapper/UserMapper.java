@@ -5,6 +5,7 @@ import com.suhIT.restroManager.exception.UserNotFoundException;
 import com.suhIT.restroManager.model.User;
 import com.suhIT.restroManager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,7 +26,7 @@ public class UserMapper {
     }
     public User toEntity(UserDTO userDTO) {
         User user = userRepository.findByUsername(userDTO.getUsername())
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "User with username: " + userDTO.getUsername() + " not found!"));
 
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());

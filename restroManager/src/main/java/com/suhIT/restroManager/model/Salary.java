@@ -3,6 +3,7 @@ package com.suhIT.restroManager.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,8 +20,7 @@ import java.util.UUID;
 public class Salary {
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "BINARY(16)")
-    private UUID id;
+    private Long id;
     private double amount;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date startDate;

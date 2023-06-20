@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 public class SalaryDTO {
 
-    private UUID id;
+    private Long id;
     private double amount;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date startDate;

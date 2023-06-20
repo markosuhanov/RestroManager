@@ -13,8 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class BillDTO {
-    private UUID id;
-    private UUID waiter;
+    private Long id;
+    private Long waiter;
     private double price;
     private double cost;
     private Date createdAt;

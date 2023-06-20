@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +23,7 @@ public class UserDTO {
     @NotBlank(message = "Last name is required")
     private String lastName;
     @NotBlank(message = "Username is required")
+    @Size(min = 6, message = "The username must contain at least 6 characters!")
     private String username;
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")

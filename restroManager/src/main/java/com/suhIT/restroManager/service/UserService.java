@@ -14,13 +14,12 @@ public interface UserService {
 
     List<UserDTO> getAllUsers();
 
-    UserDTO getUserById(UUID id);
+    UserDTO getUserById(Long id);
 
     UserDTO getUserByUsername(String username);
 
 
     void deleteUser(String username);
 
-    void validateUniqueUsername(String username);
-
+    void activateUser(String username);
 }

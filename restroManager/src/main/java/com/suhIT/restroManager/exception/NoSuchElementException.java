@@ -10,10 +10,12 @@ import org.springframework.http.HttpStatus;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserNotFoundException extends RuntimeException {
-    
+public class NoSuchElementException extends RuntimeException {
+
     private static final long serialVersionUID = 1L;
     private HttpStatus httpStatus;
     private String message;
 
 }
+
+

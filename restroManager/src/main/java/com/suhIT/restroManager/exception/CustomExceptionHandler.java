@@ -5,17 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-public class ExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception,
@@ -35,4 +33,25 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(objectBody, httpStatus);
     }
+
+
+
+    @ExceptionHandler(value = NoSuchElementException.class)
+    public ResponseEntity<String> handleNoSuchElementException(
+            NoSuchElementException noSuchElementException) {
+        return new ResponseEntity<String>(noSuchElementException.getMessage(), noSuchElementException.getHttpStatus());
+    }
+
+    @ExceptionHandler(value = UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(
+            UserNotFoundException userNotFoundException) {
+        return new ResponseEntity<String>(userNotFoundException.getMessage(), userNotFoundException.getHttpStatus());
+    }
+
+    @ExceptionHandler(value = UserAlreadyExists.class)
+    public ResponseEntity<String> handleUserAlreadyExists(
+            UserAlreadyExists userAlreadyExists) {
+        return new ResponseEntity<String>(userAlreadyExists.getMessage(), userAlreadyExists.getHttpStatus());
+    }
+
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -18,73 +17,52 @@ public class UserController {
 
     private final UserService userService;
 
-
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
+
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
+    public ResponseEntity<List<UserDTO>> getAll() {
         List<UserDTO> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getUserById(@PathVariable("id") UUID id) {
-        //TODO i dont need this method, instead i will using getByUsername
-        try {
-            return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
-    //TODO getUserByUsername
     @GetMapping("/{username}")
-    public ResponseEntity<Object> getUserByUsername(@PathVariable("username") String username) {
-        try {
-            return new ResponseEntity<>(userService.getUserByUsername(username), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Object> getByUsername(@PathVariable("username") String username) {
+
+        UserDTO user = userService.getUserByUsername(username);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 
     @PostMapping
-    public ResponseEntity<Object> createUser(@Valid @RequestBody UserDTO dto) {
-        try {
-            userService.validateUniqueUsername(dto.getUsername()); // Validate unique username
-            return new ResponseEntity<>(userService.createUser(dto), HttpStatus.CREATED);
-        }
-        catch (IllegalArgumentException e) {
-            String errorMessage = e.getMessage();
-            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
-        }
-        catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<Object> create(@Valid @RequestBody UserDTO dto) {
 
+        return new ResponseEntity<>(userService.createUser(dto), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{username}")
-    public ResponseEntity<Object> updateUser(@PathVariable("username") String username, @RequestBody UserDTO updatedUserDTO) {
-        try {
-            return new ResponseEntity<>(userService.updateUser(username, updatedUserDTO), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @PutMapping("/update/{username}")
+    public ResponseEntity<Object> update(@PathVariable("username") String username,
+                                         @RequestBody UserDTO updatedUserDTO) {
+
+        UserDTO updatedUser = userService.updateUser(username, updatedUserDTO);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("/{username}")
-    public ResponseEntity<Object> deleteUser(@PathVariable("username") String username) {
-        try {
-            userService.deleteUser(username);
-            return new ResponseEntity<>("User successfully deleted",HttpStatus.OK);
+    public ResponseEntity<Object> delete(@PathVariable("username") String username) {
 
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        userService.deleteUser(username);
+        return new ResponseEntity<>("User successfully deleted", HttpStatus.OK);
+    }
+
+    @PutMapping("activate/{username}")
+    public ResponseEntity<Object> activate(@PathVariable("username") String username) {
+        userService.activateUser(username);
+        return new ResponseEntity<>("User successfully activated again!", HttpStatus.OK);
     }
 
     //TODO startJob
