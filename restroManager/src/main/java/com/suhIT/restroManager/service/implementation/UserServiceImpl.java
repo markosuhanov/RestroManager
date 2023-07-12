@@ -49,8 +49,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO updateUser(String username, UserDTO updatedUserDTO) {
         // It will never be null because I always update the existing one.
-        User existingUser = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "User with username: '" + username + "' not found!"));
+        User existingUser = userRepository.findByUsername(username).orElseThrow(
+                () -> new UserNotFoundException(HttpStatus.NOT_FOUND,
+                        "User with username: '" + username + "' not found!"
+                ));
 
         String newUsername = updatedUserDTO.getUsername();
         updatedUserDTO.setUsername(username);
@@ -88,16 +90,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserByUsername(String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "User with username: '" + username + "' not found!"));
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new UserNotFoundException(HttpStatus.NOT_FOUND,
+                        "User with username: '" + username + "' not found!"
+                ));
         return userMapper.toDTO(user);
     }
 
 
     @Override
     public void deleteUser(String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "User with username: '" + username + "' not found!"));
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new UserNotFoundException(HttpStatus.NOT_FOUND,
+                        "User with username: '" + username + "' not found!"
+                ));
         user.setActive(false);
         userRepository.save(user);
     }
@@ -128,10 +134,6 @@ public class UserServiceImpl implements UserService {
 //    }
 
 
-    //TODO void startJob(String username) -> atTheJob -> true
-
-    //TODO void endJob(String username) -> atTheJob -> false
-
     //Validate user based on model defined validations
     private void validateUser(User user) {
         Set<ConstraintViolation<User>> violations = validator.validate(user);
@@ -149,7 +151,9 @@ public class UserServiceImpl implements UserService {
     public void validateUniqueUsername(String username) {
         Optional<User> existingUser = userRepository.findByUsername(username);
         existingUser.ifPresent(user -> {
-            throw new UserAlreadyExists(HttpStatus.BAD_REQUEST, "User with username: '" + username + "' already exists!");
+            throw new UserAlreadyExists(HttpStatus.BAD_REQUEST,
+                    "User with username: '" + username + "' already exists!"
+            );
         });
     }
 

@@ -65,9 +65,5 @@ public class UserController {
         return new ResponseEntity<>("User successfully activated again!", HttpStatus.OK);
     }
 
-    //TODO startJob
-
-    //TODO endJob
-
 
 }

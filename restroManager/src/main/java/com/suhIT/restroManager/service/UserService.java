@@ -1,10 +1,8 @@
 package com.suhIT.restroManager.service;
 
 import com.suhIT.restroManager.dto.UserDTO;
-import com.suhIT.restroManager.model.User;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface UserService {
 

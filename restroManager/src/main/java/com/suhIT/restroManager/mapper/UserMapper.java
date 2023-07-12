@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserMapper implements Mapper<User, UserDTO> {
 
     private final UserRepository userRepository;
 

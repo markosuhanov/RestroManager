@@ -5,7 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -16,10 +20,14 @@ import java.util.UUID;
 public class SalaryDTO {
 
     private Long id;
+    @DecimalMin(value = "0.0", message = "Amount must be a positive number!")
     private double amount;
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private Date startDate;
+    private LocalDate startDate;
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private Date endDate;
+    @Nullable
+    private LocalDate endDate;
+    private Long userId;
+    @NotNull(message = "Salary activity is required")
     private boolean active;
 }
