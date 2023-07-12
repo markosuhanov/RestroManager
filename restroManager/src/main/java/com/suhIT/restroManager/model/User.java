@@ -38,7 +38,7 @@ public class User {
     @Column(name = "role")
     private Role role;
 
-    @NotNull(message = "User activity active is required")
+    @NotNull(message = "User activity is required")
     private boolean active;
 
 

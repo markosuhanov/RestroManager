@@ -33,7 +33,7 @@ public class UserDTO {
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Role is required")
     private Role role;
-    @NotNull(message = "User activity active is required")
+    @NotNull(message = "User activity is required")
     private boolean active;
     /*
     * TODO boolean atTheJob

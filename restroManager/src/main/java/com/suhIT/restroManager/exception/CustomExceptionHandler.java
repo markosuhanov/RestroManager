@@ -54,4 +54,20 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(userAlreadyExists.getMessage(), userAlreadyExists.getHttpStatus());
     }
 
+    @ExceptionHandler(value = SalaryNotFoundException.class)
+    public ResponseEntity<String> handleSalaryNotFoundException(
+            SalaryNotFoundException salaryNotFoundException) {
+        return new ResponseEntity<String>(salaryNotFoundException.getMessage(), salaryNotFoundException.getHttpStatus());
+    }
+
+    @ExceptionHandler(value = ActiveSalaryHasAnEndDateError.class)
+    public ResponseEntity<String> handleActiveSalaryHasAnEndDateError(
+            ActiveSalaryHasAnEndDateError activeSalaryHasAnEndDateError) {
+        return new ResponseEntity<String>(activeSalaryHasAnEndDateError.getMessage(), activeSalaryHasAnEndDateError.getHttpStatus());
+    }
+
+
+
+
+
 }
