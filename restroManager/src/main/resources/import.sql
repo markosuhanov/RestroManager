@@ -94,7 +94,7 @@ INSERT INTO food_item (id, name, description, price, cost, active, img_path, ite
 
 INSERT INTO food_item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time) VALUES (456789012345680, 'Pina Colada', 'Tropski koktel sa rumom, kremom od kokosa i sokom od ananasa', 650.0, 175.5, true, null, 1234567890123456, 'Nema', 7);
 
-INSERT INTO food_item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time) VALUES (567890123456781, 'Daiquiri', 'Koktel sa rumom, limetom i šećerom', 600.0, 162.0, true, null, 1234567890123456, 'Nema', 6);
+INSERT INTO food_item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time) VALUES (567890123456781, 'Daiquiri', 'Koktel sa rumom, limetom i šećerom', 600.0, 162.0, false, null, 1234567890123456, 'Nema', 6);
 
 -- Drink Items for Sok category
 INSERT INTO drink_item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time) VALUES (678901234567892, 'Narandža', 'Sveže ceđeni sok od narandže', 250.0, 67.5, true, null, 6789012345678901, 'Nema', 5);
@@ -116,4 +116,4 @@ INSERT INTO drink_item (id, name, description, price, cost, active, img_path, it
 
 INSERT INTO drink_item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time) VALUES (567890123456780, 'Macchiato', 'Kafa sa espreso bazom i mlečnom penu', 200.0, 54.0, true, null, 7890123456789012, 'Mleko', 4);
 
-INSERT INTO drink_item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time) VALUES (678901234567891, 'Americano', 'Razblažena kafa sa jakim ukusom', 190.0, 51.3, true, null, 7890123456789012, 'Nema', 7);
+INSERT INTO drink_item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time) VALUES (678901234567891, 'Americano', 'Razblažena kafa sa jakim ukusom', 190.0, 51.3, false, null, 7890123456789012, 'Nema', 7);

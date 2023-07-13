@@ -31,8 +31,8 @@ public class ItemDTO {
     @NotNull(message = "You have set existence of item!")
     private boolean active;
     private String imgPath;
-    @ManyToOne
-    @JoinColumn(name = "item_category_id")
-    @NotNull(message = "Item category is required")
-    private ItemCategory itemCategory;
+//    @ManyToOne
+//    @JoinColumn(name = "item_category_id")
+//    @NotNull(message = "Item category is required")
+    private Long itemCategoryId;
 }

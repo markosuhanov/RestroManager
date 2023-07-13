@@ -1,10 +1,16 @@
 package com.suhIT.restroManager.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+
+@Getter
+@Setter
 @MappedSuperclass
 public abstract class Item {
 

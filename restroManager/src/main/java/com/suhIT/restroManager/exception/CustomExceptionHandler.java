@@ -66,6 +66,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(activeSalaryHasAnEndDateError.getMessage(), activeSalaryHasAnEndDateError.getHttpStatus());
     }
 
+    @ExceptionHandler(value = ItemNotFoundException.class)
+    public ResponseEntity<String> handleItemNotFoundException(
+            ItemNotFoundException itemNotFoundException) {
+        return new ResponseEntity<String>(itemNotFoundException.getMessage(), itemNotFoundException.getHttpStatus());
+    }
+
 
 
 
