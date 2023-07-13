@@ -7,6 +7,7 @@ import com.suhIT.restroManager.model.Salary;
 import com.suhIT.restroManager.model.User;
 import com.suhIT.restroManager.repository.SalaryRepository;
 import com.suhIT.restroManager.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ public class SalaryMapper implements Mapper<Salary, SalaryDTO> {
     private final SalaryRepository salaryRepository;
     private final UserRepository userRepository;
 
+    @Autowired
     public SalaryMapper(SalaryRepository salaryRepository, UserRepository userRepository) {
         this.salaryRepository = salaryRepository;
         this.userRepository = userRepository;
