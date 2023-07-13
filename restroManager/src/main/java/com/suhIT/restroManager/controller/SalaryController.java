@@ -24,17 +24,17 @@ public class SalaryController {
     }
 
 
-    @GetMapping("all/{username}")
+    @GetMapping("{username}")
     public ResponseEntity<List<SalaryDTO>> getAll(@PathVariable("username") String username) {
         List<SalaryDTO> salaries = salaryService.getAllSalaries(username);
         return new ResponseEntity<>(salaries, HttpStatus.OK);
     }
 
-    @GetMapping("id/{id}")
-    public ResponseEntity<Object> getById(@PathVariable("id") Long id) {
-        SalaryDTO salaryDTO = salaryService.getSalaryById(id);
-        return new ResponseEntity<>(salaryDTO, HttpStatus.OK);
-    }
+//    @GetMapping("id/{id}")
+//    public ResponseEntity<Object> getById(@PathVariable("id") Long id) {
+//        SalaryDTO salaryDTO = salaryService.getSalaryById(id);
+//        return new ResponseEntity<>(salaryDTO, HttpStatus.OK);
+//    }
 
     @GetMapping("active/{username}")
     public ResponseEntity<Object> getActive(@PathVariable("username") String username) {

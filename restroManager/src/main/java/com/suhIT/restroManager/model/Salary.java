@@ -35,7 +35,7 @@ public class Salary {
     private LocalDate endDate;
     @ManyToOne
     private User user;
-    @NotNull(message = "Salary activity is required")
+    @NotNull(message = "User activity is required")
     private boolean active;
 
     @Override
