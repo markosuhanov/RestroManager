@@ -54,13 +54,13 @@ INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (2
 
 -- ~~~~~~~~~~~~~~~~~~~ITEM CATEGORIES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-INSERT INTO item_category (id, name) VALUES (1234567890123456, 'Koktel');
-INSERT INTO item_category (id, name) VALUES (2345678901234567, 'Sendvič');
-INSERT INTO item_category (id, name) VALUES (3456789012345678, 'Burger');
-INSERT INTO item_category (id, name) VALUES (4567890123456789, 'Palacinka');
-INSERT INTO item_category (id, name) VALUES (5678901234567890, 'Pivo');
-INSERT INTO item_category (id, name) VALUES (6789012345678901, 'Sok');
-INSERT INTO item_category (id, name) VALUES (7890123456789012, 'Kafa');
+INSERT INTO item_category (id, name, active) VALUES (3456789012345678, 'Burger', true);
+INSERT INTO item_category (id, name, active) VALUES (1234567890123456, 'Koktel', true);
+INSERT INTO item_category (id, name, active) VALUES (4567890123456789, 'Palacinka', true);
+INSERT INTO item_category (id, name, active) VALUES (5678901234567890, 'Pivo', true);
+INSERT INTO item_category (id, name, active) VALUES (6789012345678901, 'Sok', true);
+INSERT INTO item_category (id, name, active) VALUES (7890123456789012, 'Kafa', true);
+INSERT INTO item_category (id, name, active) VALUES (2345678901234567, 'Sendvič', true);
 
 -- ~~~~~~~~~~~~~~~~~~~ITEMS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

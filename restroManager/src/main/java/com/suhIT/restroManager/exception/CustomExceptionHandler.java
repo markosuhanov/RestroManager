@@ -72,7 +72,29 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(itemNotFoundException.getMessage(), itemNotFoundException.getHttpStatus());
     }
 
+    @ExceptionHandler(value = ItemWithSameNameAlreadyExists.class)
+    public ResponseEntity<String> handleItemWithSameNameAlreadyExists(
+            ItemWithSameNameAlreadyExists itemWithSameNameAlreadyExists) {
+        return new ResponseEntity<String>(itemWithSameNameAlreadyExists.getMessage(), itemWithSameNameAlreadyExists.getHttpStatus());
+    }
 
+    @ExceptionHandler(value = ItemCategoryWithSameNameAlreadyExists.class)
+    public ResponseEntity<String> handleItemCategoryWithSameNameAlreadyExists(
+            ItemCategoryWithSameNameAlreadyExists itemCategoryWithSameNameAlreadyExists) {
+        return new ResponseEntity<String>(itemCategoryWithSameNameAlreadyExists.getMessage(), itemCategoryWithSameNameAlreadyExists.getHttpStatus());
+    }
+
+    @ExceptionHandler(value = ItemCategoryNotFound.class)
+    public ResponseEntity<String> handleItemCategoryNotFound(
+            ItemCategoryNotFound itemCategoryNotFound) {
+        return new ResponseEntity<String>(itemCategoryNotFound.getMessage(), itemCategoryNotFound.getHttpStatus());
+    }
+
+    @ExceptionHandler(value = BadRequest.class)
+    public ResponseEntity<String> handleBadRequest(
+            BadRequest badRequest) {
+        return new ResponseEntity<String>(badRequest.getMessage(), badRequest.getHttpStatus());
+    }
 
 
 

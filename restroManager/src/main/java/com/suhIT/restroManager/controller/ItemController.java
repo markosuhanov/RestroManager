@@ -5,10 +5,9 @@ import com.suhIT.restroManager.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,6 +20,13 @@ public class ItemController {
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
+
+    @PostMapping("/{itemType}")
+    public ResponseEntity<ItemDTO> create(@Valid @RequestBody ItemDTO itemDTO, @PathVariable("itemType") String itemType) {
+        ItemDTO item = itemService.createItem(itemDTO, itemType);
+        return new ResponseEntity<>(item, HttpStatus.OK);
+    }
+
 
     @GetMapping("/all")
     public ResponseEntity<List<ItemDTO>> getAll() {
@@ -57,4 +63,6 @@ public class ItemController {
         List<ItemDTO> items = itemService.getAllActiveDrinkItems();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
+
+
 }

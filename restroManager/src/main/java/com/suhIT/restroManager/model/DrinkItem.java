@@ -19,7 +19,7 @@ public class DrinkItem extends Item{
     private String allergens;
     private int prepTime;
 
-    @ManyToOne
-    @JoinColumn(name = "item_category_id")
-    private ItemCategory itemCategory;
+//    @ManyToOne
+//    @JoinColumn(name = "item_category_id")
+//    private ItemCategory itemCategory;
 }

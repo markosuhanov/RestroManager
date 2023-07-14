@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ItemService {
 
-    ItemDTO createItem(ItemDTO itemDTO);
+    ItemDTO createItem(ItemDTO itemDTO, String itemType);
     ItemDTO updateItem(ItemDTO itemDTO);
     List<ItemDTO> getAllItems();
 
