@@ -1,16 +1,15 @@
 package com.suhIT.restroManager.dto;
 
 import com.suhIT.restroManager.model.ItemCategory;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@Getter
+@Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,5 +33,5 @@ public class ItemDTO {
 //    @ManyToOne
 //    @JoinColumn(name = "item_category_id")
 //    @NotNull(message = "Item category is required")
-    private Long itemCategoryId;
+    private String itemCategoryName;
 }

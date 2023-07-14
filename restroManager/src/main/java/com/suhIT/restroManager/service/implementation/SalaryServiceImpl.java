@@ -37,9 +37,8 @@ public class SalaryServiceImpl implements SalaryService {
     @Override
     public SalaryDTO createSalary(SalaryDTO salaryDTO) {
         /*
-        * TODO:
-        *  1) ako je prva plata, onda nova
-        *  2) ako vec ima, onda na nju end date je sadasnji i na novoj start date isti, a end date prazno
+        * TODO: NAPISATI CREATE SALARY i celu salary klasu
+        *
         * */
         Optional<List<Salary>> salaries = salaryRepository.findAllByUserId(salaryDTO.getUserId());
         if (salaries.isPresent() && salaries.get().isEmpty()) {

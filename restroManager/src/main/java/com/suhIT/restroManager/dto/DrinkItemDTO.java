@@ -1,12 +1,10 @@
 package com.suhIT.restroManager.dto;
 
-import com.suhIT.restroManager.model.Item;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class DrinkItemDTO extends ItemDTO {
