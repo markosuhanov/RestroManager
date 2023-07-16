@@ -17,9 +17,9 @@ import javax.validation.constraints.NotNull;
 public class ItemDTO {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private Long id;
     @NotBlank(message = "Item name is required")
     private String name;
     private String description;

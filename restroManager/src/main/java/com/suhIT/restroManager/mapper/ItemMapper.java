@@ -9,9 +9,8 @@ import com.suhIT.restroManager.model.DrinkItem;
 import com.suhIT.restroManager.model.FoodItem;
 import com.suhIT.restroManager.model.Item;
 import com.suhIT.restroManager.model.ItemCategory;
-import com.suhIT.restroManager.repository.DrinkItemRepository;
-import com.suhIT.restroManager.repository.FoodItemRepository;
 import com.suhIT.restroManager.repository.ItemCategoryRepository;
+import com.suhIT.restroManager.repository.ItemRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,36 +19,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class ItemMapper implements Mapper<Item, ItemDTO> {
 
-    private final FoodItemRepository foodItemRepository;
-    private final DrinkItemRepository drinkItemRepository;
-
     private final ItemCategoryRepository itemCategoryRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public ItemMapper(FoodItemRepository foodItemRepository, DrinkItemRepository drinkItemRepository, ItemCategoryRepository itemCategoryRepository) {
-        this.drinkItemRepository = drinkItemRepository;
-        this.foodItemRepository = foodItemRepository;
+    public ItemMapper(ItemCategoryRepository itemCategoryRepository, ItemRepository itemRepository) {
+        ;
         this.itemCategoryRepository = itemCategoryRepository;
+        this.itemRepository = itemRepository;
     }
+
     @Override
     public Item toEntity(ItemDTO itemDTO) {
 
-        Item item;
+        Item item = itemRepository.findByName(itemDTO.getName()).orElseThrow(
+                () -> new ItemNotFoundException(HttpStatus.NOT_FOUND,
+                        "Item with name + " + itemDTO.getName() + " not found!"
+                ));
         if (itemDTO instanceof FoodItemDTO) {
-            item = foodItemRepository.findById(itemDTO.getId()).orElseThrow(
-                    () -> new ItemNotFoundException(HttpStatus.NOT_FOUND,
-                            "Item with id + " + itemDTO.getId() + " not found!"
-                    ));
-
-
             FoodItemDTO foodItemDTO = (FoodItemDTO) itemDTO;
             ((FoodItem) item).setAllergens(foodItemDTO.getAllergens());
             ((FoodItem) item).setPrepTime(foodItemDTO.getPrepTime());
         } else if (itemDTO instanceof DrinkItemDTO) {
-            item = drinkItemRepository.findById(itemDTO.getId()).orElseThrow(
-                    () -> new ItemNotFoundException(HttpStatus.NOT_FOUND,
-                            "Item with id + " + itemDTO.getId() + " not found!"
-                    ));
             DrinkItemDTO drinkItemDTO = (DrinkItemDTO) itemDTO;
             ((DrinkItem) item).setAllergens(drinkItemDTO.getAllergens());
             ((DrinkItem) item).setPrepTime(drinkItemDTO.getPrepTime());
@@ -57,7 +48,6 @@ public class ItemMapper implements Mapper<Item, ItemDTO> {
         else {
             throw new ItemNotFoundException(HttpStatus.NOT_FOUND, "Something went wrong!");
         }
-        item.setId(itemDTO.getId());
         item.setName(itemDTO.getName());
         item.setDescription(itemDTO.getDescription());
         item.setPrice(itemDTO.getPrice());
@@ -72,24 +62,10 @@ public class ItemMapper implements Mapper<Item, ItemDTO> {
         return item;
     }
 
-//    @Override
-//    public ItemDTO toDTO(Item item) {
-//        return ItemDTO.builder()
-//                .id(item.getId())
-//                .name(item.getName())
-//                .description(item.getDescription())
-//                .price(item.getPrice())
-//                .cost(item.getCost())
-//                .active(item.isActive())
-//                .imgPath(item.getImgPath())
-//                .itemCategoryId(item.getItemCategory().getId())
-//                .build();
-//    }
 
     @Override
     public ItemDTO toDTO(Item item) {
         ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setId(item.getId());
         itemDTO.setName(item.getName());
         itemDTO.setDescription(item.getDescription());
         itemDTO.setPrice(item.getPrice());

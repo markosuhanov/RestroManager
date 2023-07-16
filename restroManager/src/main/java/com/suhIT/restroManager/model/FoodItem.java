@@ -2,6 +2,7 @@ package com.suhIT.restroManager.model;
 
 import lombok.*;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,13 +13,11 @@ import java.time.Duration;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
+@DiscriminatorValue("food")
 public class FoodItem extends Item {
 
     private String allergens;
     private int prepTime;
-//    @ManyToOne
-//    @JoinColumn(name = "item_category_id")
-//    private ItemCategory itemCategory;
+
 }

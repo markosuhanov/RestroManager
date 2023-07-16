@@ -1,7 +1,6 @@
 package com.suhIT.restroManager.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
@@ -11,8 +10,14 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@MappedSuperclass
-public abstract class Item {
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "item_type")
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

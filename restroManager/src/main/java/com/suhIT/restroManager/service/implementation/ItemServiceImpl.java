@@ -9,38 +9,33 @@ import com.suhIT.restroManager.model.DrinkItem;
 import com.suhIT.restroManager.model.FoodItem;
 import com.suhIT.restroManager.model.Item;
 import com.suhIT.restroManager.model.ItemCategory;
-import com.suhIT.restroManager.repository.DrinkItemRepository;
-import com.suhIT.restroManager.repository.FoodItemRepository;
 import com.suhIT.restroManager.repository.ItemCategoryRepository;
+import com.suhIT.restroManager.repository.ItemRepository;
 import com.suhIT.restroManager.service.ItemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ItemServiceImpl implements ItemService {
 
-    private final FoodItemRepository foodItemRepository;
-    private final DrinkItemRepository drinkItemRepository;
 
     private final ItemCategoryRepository itemCategoryRepository;
     private final ItemMapper itemMapper;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public ItemServiceImpl(ItemMapper itemMapper, FoodItemRepository foodItemRepository,
-                           DrinkItemRepository drinkItemRepository, ItemCategoryRepository itemCategoryRepository) {
+    public ItemServiceImpl(ItemMapper itemMapper, ItemCategoryRepository itemCategoryRepository,
+                           ItemRepository itemRepository) {
 
         this.itemMapper = itemMapper;
-        this.foodItemRepository = foodItemRepository;
-        this.drinkItemRepository = drinkItemRepository;
         this.itemCategoryRepository = itemCategoryRepository;
+        this.itemRepository = itemRepository;
     }
 
 
@@ -66,7 +61,6 @@ public class ItemServiceImpl implements ItemService {
             item = new DrinkItem();
             DrinkItemDTO drinkItemDTO = new DrinkItemDTO();
             BeanUtils.copyProperties(itemDTO, drinkItemDTO);
-
             ((DrinkItem) item).setAllergens(drinkItemDTO.getAllergens());
             ((DrinkItem) item).setPrepTime(drinkItemDTO.getPrepTime());
         } else {
@@ -83,16 +77,8 @@ public class ItemServiceImpl implements ItemService {
                         "Item category with name " + itemDTO.getName() + " not found!"
                 ));
         item.setItemCategory(itemCategory);
-
-        Item createdItem;
-        if (item instanceof FoodItem) {
-            createdItem = foodItemRepository.save((FoodItem) item);
-        } else if (item instanceof DrinkItem) {
-            createdItem = drinkItemRepository.save((DrinkItem) item);
-        } else {
-            throw new BadRequest(HttpStatus.BAD_REQUEST, "Something went wrong!");
-        }
-        return itemMapper.toDTO(createdItem);
+        itemRepository.save(item);
+        return itemMapper.toDTO(item);
 
     }
 
@@ -105,63 +91,45 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemDTO> getAllItems() {
-        List<FoodItem> foodItems = foodItemRepository.findAll();
-        List<DrinkItem> drinkItems = drinkItemRepository.findAll();
-        if (foodItems.isEmpty() && drinkItems.isEmpty()) {
-            throw new NoSuchElementException(HttpStatus.NOT_FOUND, "Items doesn't exists!");
-        }
 
-        List<Item> concatenatedItems = Stream.concat(foodItems.stream(), drinkItems.stream())
-                .collect(Collectors.toList());
-        return concatenatedItems.stream().map(itemMapper::toDTO).collect(Collectors.toList());
-
+        List<Item> items = itemRepository.findAll();
+        return items.stream().map(itemMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<ItemDTO> getAllActiveItems() {
-        List<FoodItem> foodItems = foodItemRepository.findAllByActiveTrue().orElse(new ArrayList<>());
-        List<DrinkItem> drinkItems = drinkItemRepository.findAllByActiveTrue().orElse(new ArrayList<>());
-
-        if (foodItems.size() == 0 && drinkItems.size() == 0) {
-            throw new NoSuchElementException(HttpStatus.NOT_FOUND, "Items doesn't exists!");
-        }
-        List<Item> concatenatedItems = Stream.concat(foodItems.stream(), drinkItems.stream())
-                .collect(Collectors.toList());
-        return concatenatedItems.stream().map(itemMapper::toDTO).collect(Collectors.toList());
-
+        List<Item> items = itemRepository.findAllByActiveIsTrue()
+                .orElseThrow(() -> new NoSuchElementException(HttpStatus.NOT_FOUND, "Items doesn't exists!"));
+        return items.stream().map(itemMapper::toDTO).collect(Collectors.toList());
     }
 
 
     @Override
     public List<ItemDTO> getAllFoodItems() {
-        List<FoodItem> foodItems = foodItemRepository.findAll();
-        if (foodItems.isEmpty()) {
-            throw new ItemNotFoundException(HttpStatus.NOT_FOUND, "Food items not found!");
-        }
-        return foodItems.stream().map(itemMapper::toDTO).collect(Collectors.toList());
+        List<Item> items = itemRepository.findAllFoodItems()
+                .orElseThrow(() -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Food items not found!"));
+        return items.stream().map(itemMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<ItemDTO> getAllActiveFoodItems() {
-        List<FoodItem> foodItems = foodItemRepository.findAllByActiveTrue()
+        List<Item> items = itemRepository.findAllActiveFoodItems()
                 .orElseThrow(() -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Food items not found!"));
-        return foodItems.stream().map(itemMapper::toDTO).collect(Collectors.toList());
+        return items.stream().map(itemMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<ItemDTO> getAllDrinkItems() {
-        List<DrinkItem> drinkItems = drinkItemRepository.findAll();
-        if (drinkItems.isEmpty()) {
-            throw new ItemNotFoundException(HttpStatus.NOT_FOUND, "Drink items not found!");
-        }
-        return drinkItems.stream().map(itemMapper::toDTO).collect(Collectors.toList());
+        List<Item> items = itemRepository.findAllDrinkItems()
+                .orElseThrow(() -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Drink items not found!"));
+        return items.stream().map(itemMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<ItemDTO> getAllActiveDrinkItems() {
-        List<DrinkItem> drinkItems = drinkItemRepository.findAllByActiveTrue()
-                .orElseThrow(() -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Food items not found!"));
-        return drinkItems.stream().map(itemMapper::toDTO).collect(Collectors.toList());
+        List<Item> items = itemRepository.findAllActiveDrinkItems()
+                .orElseThrow(() -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Drink items not found!"));
+        return items.stream().map(itemMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -186,14 +154,15 @@ public class ItemServiceImpl implements ItemService {
     }
 
     public void validateUniqueItemName(String name) {
-        Optional<Item> existingFoodItemName = foodItemRepository.findByName(name);
-        Optional<Item> existingDrinkItemName = drinkItemRepository.findByName(name);
-        if (existingDrinkItemName.isPresent() || existingFoodItemName.isPresent()) {
+
+        Optional<Item> item = itemRepository.findByName(name);
+        if (item.isPresent()) {
             throw new ItemWithSameNameAlreadyExists(HttpStatus.BAD_REQUEST,
                     "Item with name: '" + name + "' already exists!"
             );
         }
     }
+
 
     //TODO: checkForValidName when creating
 }
