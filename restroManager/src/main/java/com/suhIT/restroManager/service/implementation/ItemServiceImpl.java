@@ -3,12 +3,10 @@ package com.suhIT.restroManager.service.implementation;
 import com.suhIT.restroManager.dto.DrinkItemDTO;
 import com.suhIT.restroManager.dto.FoodItemDTO;
 import com.suhIT.restroManager.dto.ItemDTO;
+import com.suhIT.restroManager.dto.UserDTO;
 import com.suhIT.restroManager.exception.*;
 import com.suhIT.restroManager.mapper.ItemMapper;
-import com.suhIT.restroManager.model.DrinkItem;
-import com.suhIT.restroManager.model.FoodItem;
-import com.suhIT.restroManager.model.Item;
-import com.suhIT.restroManager.model.ItemCategory;
+import com.suhIT.restroManager.model.*;
 import com.suhIT.restroManager.repository.ItemCategoryRepository;
 import com.suhIT.restroManager.repository.ItemRepository;
 import com.suhIT.restroManager.service.ItemService;
@@ -29,18 +27,23 @@ public class ItemServiceImpl implements ItemService {
     private final ItemMapper itemMapper;
     private final ItemRepository itemRepository;
 
+    private final UserServiceImpl userService;
+
     @Autowired
     public ItemServiceImpl(ItemMapper itemMapper, ItemCategoryRepository itemCategoryRepository,
-                           ItemRepository itemRepository) {
+                           ItemRepository itemRepository, UserServiceImpl userService) {
 
         this.itemMapper = itemMapper;
         this.itemCategoryRepository = itemCategoryRepository;
         this.itemRepository = itemRepository;
+        this.userService = userService;
     }
 
 
     @Override
     public ItemDTO createItem(ItemDTO itemDTO, String itemType) {
+        UserDTO user = userService.getLoggedUser();
+        System.out.println(user.toString());
         validateUniqueItemName(itemDTO.getName());
 
         //check for valid item category id

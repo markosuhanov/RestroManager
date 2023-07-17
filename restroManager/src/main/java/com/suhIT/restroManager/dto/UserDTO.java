@@ -35,6 +35,8 @@ public class UserDTO {
     private Role role;
     @NotNull(message = "User activity is required")
     private boolean active;
+    private String JWTToken;
+
     /*
     * TODO boolean atTheJob
     * when taking orders, waiter who is atTheJob and has the least ordersr

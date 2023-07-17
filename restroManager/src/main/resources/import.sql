@@ -1,15 +1,15 @@
 -- ~~~~~~~~~~~~~~~~~~~USERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- User data
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (123456789, 'Jelena', 'Jankovic', 'janeSmith', 'jane@example.com', 'password456', 'MANAGER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (234567890, 'Aleksandar', 'Aleksic', 'alexA92', 'alex@example.com', 'password789', 'COOK', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (345678901, 'Jovan', 'Jovanovic', 'jovan85', 'john@example.com', 'password123', 'ADMIN', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (456789012, 'Emilija', 'Emic', 'emmaE23', 'emma@example.com', 'password321', 'WAITER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (567890123, 'Mihajlo', 'Mihajlovic', 'michaelM', 'michael@example.com', 'password654', 'BARTENDER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (678901234, 'Sara', 'Savic', 'sara_s', 'sarah@example.com', 'password987', 'BARTENDER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (789012345, 'David', 'Davidovic', 'david_22', 'david@example.com', 'password123', 'MANAGER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (890123456, 'Emilija', 'Eric', 'emilyE45', 'emily@example.com', 'password456', 'COOK', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (901234567, 'Rajko', 'Rajic', 'ryanR98', 'ryan@example.com', 'password789', 'WAITER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (1234567890, 'Olivera', 'Obradovic', 'oliviaO', 'olivia@example.com', 'password321', 'BARTENDER', false);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (123456789, 'Jelena', 'Jankovic', 'janeSmith', 'jane@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'MANAGER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (234567890, 'Aleksandar', 'Aleksic', 'alexA92', 'alex@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'COOK', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (345678901, 'Jovan', 'Jovanovic', 'jovan85', 'john@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'ADMIN', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (456789012, 'Emilija', 'Emic', 'emmaE23', 'emma@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'WAITER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (567890123, 'Mihajlo', 'Mihajlovic', 'michaelM', 'michael@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (678901234, 'Sara', 'Savic', 'sara_s', 'sarah@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (789012345, 'David', 'Davidovic', 'david_22', 'david@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'MANAGER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (890123456, 'Emilija', 'Eric', 'emilyE45', 'emily@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'COOK', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (901234567, 'Rajko', 'Rajic', 'ryanR98', 'ryan@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'WAITER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (1234567890, 'Olivera', 'Obradovic', 'oliviaO', 'olivia@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', false);
 
 -- ~~~~~~~~~~~~~~~~~~~SALARIES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- Salary data for user with ID 123456789 (Jelena Jankovic)
