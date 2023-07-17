@@ -27,23 +27,19 @@ public class ItemServiceImpl implements ItemService {
     private final ItemMapper itemMapper;
     private final ItemRepository itemRepository;
 
-    private final UserServiceImpl userService;
 
     @Autowired
     public ItemServiceImpl(ItemMapper itemMapper, ItemCategoryRepository itemCategoryRepository,
-                           ItemRepository itemRepository, UserServiceImpl userService) {
+                           ItemRepository itemRepository) {
 
         this.itemMapper = itemMapper;
         this.itemCategoryRepository = itemCategoryRepository;
         this.itemRepository = itemRepository;
-        this.userService = userService;
     }
 
 
     @Override
     public ItemDTO createItem(ItemDTO itemDTO, String itemType) {
-        UserDTO user = userService.getLoggedUser();
-        System.out.println(user.toString());
         validateUniqueItemName(itemDTO.getName());
 
         //check for valid item category id
