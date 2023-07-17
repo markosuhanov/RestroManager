@@ -17,8 +17,8 @@ public class OrderingDTO {
     @NotNull(message = "Table has to be selected!")
     private String tableName;
 
-    @NotNull(message = "Waiter username has to be selected!")
-    private String waiterUsername;
+//    @NotNull(message = "Waiter username has to be selected!")
+//    private String waiterUsername;
 
     @NotNull(message = "There are no items selected in order!")
     private List<OrderedItemDTO> orderedItemDTOS;

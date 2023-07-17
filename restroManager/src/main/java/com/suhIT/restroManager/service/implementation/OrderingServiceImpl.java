@@ -37,10 +37,11 @@ public class OrderingServiceImpl implements OrderingService {
         DinnerTable table = dinnerTableRepository.findByName(orderDto.getTableName()).orElseThrow(
                 () -> new TableNotFoundException(HttpStatus.NOT_FOUND, "Table with name " + orderDto.getTableName() + " not found!"));
 
-        User waiter = userRepository.findByUsername(orderDto.getWaiterUsername()).orElseThrow(
-                () -> new UserNotFoundException(HttpStatus.NOT_FOUND,
-                        "Waiter with username " + orderDto.getWaiterUsername() + " not found!"
-                ));
+//        User waiter = userRepository.findByUsername(orderDto.getWaiterUsername()).orElseThrow(
+//                () -> new UserNotFoundException(HttpStatus.NOT_FOUND,
+//                        "Waiter with username " + orderDto.getWaiterUsername() + " not found!"
+//                ));
+
         List<OrderedItemDTO> orderedItemDTOS = orderDto.getOrderedItemDTOS();
 
 //        List<OrderedItem> orderedItems = items.stream().map(orderedItemService::createOrderedItemFromItem)
@@ -53,6 +54,8 @@ public class OrderingServiceImpl implements OrderingService {
 //        Ordering newOrder = Ordering.builder().table(table).waiter(waiter).orderedItems(orderedItems).price(totalPrice)
 //                .cost(totalCost).isPlaced(false).build();
 //        return newOrder;
+
+
         return null;
     }
 }

@@ -29,7 +29,6 @@ public class Ordering {
     private List<OrderedItem> orderedItems;
 
     @OneToOne
-    //@JoinColumn(name = "table_id")
     private DinnerTable table;
 
 
