@@ -1,6 +1,7 @@
 package com.suhIT.restroManager.service;
 
 import com.suhIT.restroManager.dto.UserDTO;
+import com.suhIT.restroManager.model.User;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface UserService {
     void deleteUser(String username);
 
     void activateUser(String username);
+
+    UserDTO getLoggedUser();
+
 }

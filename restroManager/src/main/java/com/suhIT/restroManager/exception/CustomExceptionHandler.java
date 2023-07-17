@@ -115,5 +115,15 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
+    @ExceptionHandler(value = AccountNotActivatedException.class)
+    public ResponseEntity<String> handleAccountNotActivatedException(
+            AccountNotActivatedException accountNotActivatedException) {
+        return new ResponseEntity<String>(accountNotActivatedException.getMessage(), accountNotActivatedException.getHttpStatus());
+    }
+
+
+
+
+
 
 }

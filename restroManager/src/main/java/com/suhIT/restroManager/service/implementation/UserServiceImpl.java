@@ -10,38 +10,40 @@ import com.suhIT.restroManager.repository.UserRepository;
 import com.suhIT.restroManager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final Validator validator;
-    private final UserMapper userMapper;
+
+    private UserRepository userRepository;
+
+    private UserMapper userMapper;
+
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
-        this.validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
         validateUniqueUsername(userDTO.getUsername());
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String pass = passwordEncoder.encode(userDTO.getPassword());
+
         User user = User.builder().firstName(userDTO.getFirstName()).lastName(userDTO.getLastName())
-                .username(userDTO.getUsername()).email(userDTO.getEmail()).password(userDTO.getPassword())
+                .username(userDTO.getUsername()).email(userDTO.getEmail()).password(pass)
                 .role(userDTO.getRole()).active(userDTO.isActive()).build();
-        //validateUser(user); // Validate constraints defined in model
         User createdUser = userRepository.save(user);
         return userMapper.toDTO(createdUser);
     }
@@ -120,33 +122,20 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-//    private void validateUser(User user) {
-//        Set<ConstraintViolation<User>> violations = validator.validate(user);
-//        if (!violations.isEmpty()) {
-//            StringBuilder sb = new StringBuilder();
-//            for (ConstraintViolation<User> violation : violations) {
-//                sb.append(violation.getMessage()).append("; ");
-//            }
-//            String errorMessage = sb.toString();
-//            // Log the error message
-//           // logger.error(errorMessage);
-//            // Alternatively, you can throw a different type of exception or handle the error accordingly
-//            throw new IllegalArgumentException("Validation failed: " + errorMessage);
-//        }
-//    }
-
-
-    //Validate user based on model defined validations
-    private void validateUser(User user) {
-        Set<ConstraintViolation<User>> violations = validator.validate(user);
-        if (!violations.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (ConstraintViolation<User> violation : violations) {
-                sb.append(violation.getMessage()).append("; ");
+    @Override
+    public UserDTO getLoggedUser() {
+        try {
+            return getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        } catch (Exception e) {
+            if (e instanceof NullPointerException ) {
+                return null;
             }
-            throw new IllegalArgumentException(sb.toString());
+            e.printStackTrace();
+            throw e;
         }
     }
+
+
 
     // Validate if the username already exists
     public void validateUniqueUsername(String username) {
