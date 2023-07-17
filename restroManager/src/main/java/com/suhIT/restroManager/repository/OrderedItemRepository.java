@@ -1,6 +1,6 @@
 package com.suhIT.restroManager.repository;
 
-import com.suhIT.restroManager.model.Order;
+import com.suhIT.restroManager.model.Ordering;
 import com.suhIT.restroManager.model.OrderedItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,5 +9,4 @@ import java.util.Optional;
 
 public interface OrderedItemRepository extends JpaRepository<OrderedItem, Long> {
 
-    Optional<List<OrderedItem>> findAllByOrder(Order order);
 }

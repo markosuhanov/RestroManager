@@ -29,7 +29,7 @@ public class OrderedItem {
     private boolean prepared;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    private Ordering ordering;
 
+    private boolean active;
 }

@@ -3,7 +3,7 @@ package com.suhIT.restroManager.mapper;
 import com.suhIT.restroManager.dto.OrderedItemDTO;
 import com.suhIT.restroManager.exception.OrderedItemNotFound;
 import com.suhIT.restroManager.model.OrderedItem;
-import com.suhIT.restroManager.repository.OrderRepository;
+import com.suhIT.restroManager.repository.OrderingRepository;
 import com.suhIT.restroManager.repository.OrderedItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,13 +11,13 @@ import org.springframework.http.HttpStatus;
 public class OrderedItemMapper implements Mapper<OrderedItem, OrderedItemDTO> {
 
     private final OrderedItemRepository orderedItemRepository;
-    private final OrderRepository orderRepository;
+    private final OrderingRepository orderingRepository;
 
 
     @Autowired
-    public OrderedItemMapper(OrderedItemRepository orderedItemRepository, OrderRepository orderRepository) {
+    public OrderedItemMapper(OrderedItemRepository orderedItemRepository, OrderingRepository orderingRepository) {
         this.orderedItemRepository = orderedItemRepository;
-        this.orderRepository = orderRepository;
+        this.orderingRepository = orderingRepository;
     }
 
     @Override

@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.util.List;
 
 @Data
@@ -15,8 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "orders")
-public class Order {
+public class Ordering {
 
 
     @Id
@@ -27,7 +25,16 @@ public class Order {
     private double cost;
 
 
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "ordering", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderedItem> orderedItems;
+
+    @OneToOne
+    private DinnerTable table;
+
+
+    @ManyToOne
+    private User waiter;
+
+
+    private boolean isPlaced;
 }
