@@ -96,6 +96,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(badRequest.getMessage(), badRequest.getHttpStatus());
     }
 
+    @ExceptionHandler(value = OrderedItemsByOrderNotFound.class)
+    public ResponseEntity<String> handleOrderedItemsByOrderNotFound(
+            OrderedItemsByOrderNotFound orderedItemsByOrderNotFound) {
+        return new ResponseEntity<String>(orderedItemsByOrderNotFound.getMessage(), orderedItemsByOrderNotFound.getHttpStatus());
+    }
 
+    @ExceptionHandler(value = OrderedItemNotFound.class)
+    public ResponseEntity<String> handleOrderedItemNotFound(
+            OrderedItemNotFound orderedItemNotFound) {
+        return new ResponseEntity<String>(orderedItemNotFound.getMessage(), orderedItemNotFound.getHttpStatus());
+    }
 
 }
