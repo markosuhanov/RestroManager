@@ -42,11 +42,6 @@ public class User {
     private boolean active;
 
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private Set<Salary> salaries;
-//
-//    @OneToMany(mappedBy = "waiter", cascade = CascadeType.ALL)
-//    private Set<Bill> bills;
+
 
 }
