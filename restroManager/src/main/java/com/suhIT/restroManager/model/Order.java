@@ -7,29 +7,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class OrderedItem {
-
+@Table(name="\"order\"")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @NotNull(message = "Item has to be choosen!")
-    private Item item;
+    private double price;
+    private double cost;
 
-    @NotNull(message = "Item prepared status has to be set!")
-    private boolean prepared;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderedItem> orderedItems;
 }
