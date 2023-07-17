@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class FoodItemDTO extends ItemDTO {
 
     private String allergens;

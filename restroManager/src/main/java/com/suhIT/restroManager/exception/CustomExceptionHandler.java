@@ -108,4 +108,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(orderedItemNotFound.getMessage(), orderedItemNotFound.getHttpStatus());
     }
 
+    @ExceptionHandler(value = TableNotFoundException.class)
+    public ResponseEntity<String> handleTableNotFoundException(
+            TableNotFoundException tableNotFoundException) {
+        return new ResponseEntity<String>(tableNotFoundException.getMessage(), tableNotFoundException.getHttpStatus());
+    }
+
+
+
 }
