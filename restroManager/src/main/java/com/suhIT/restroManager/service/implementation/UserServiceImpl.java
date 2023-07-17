@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO updateUser(String username, UserDTO updatedUserDTO) {
+
         // It will never be null because I always update the existing one.
         User existingUser = userRepository.findByUsername(username).orElseThrow(
                 () -> new UserNotFoundException(HttpStatus.NOT_FOUND,
@@ -58,16 +59,17 @@ public class UserServiceImpl implements UserService {
         updatedUserDTO.setUsername(username);
         User updatedUser = userMapper.toEntity(updatedUserDTO);
         updatedUser.setUsername(newUsername);
-        //validateUser(updatedUser);
         validateUniqueUsername(updatedUser.getUsername(), existingUser.getId());
         existingUser.setFirstName(updatedUser.getFirstName());
         existingUser.setLastName(updatedUser.getLastName());
         existingUser.setUsername(updatedUser.getUsername());
         existingUser.setEmail(updatedUser.getEmail());
+
         existingUser.setPassword(updatedUser.getPassword());
         User savedUser = userRepository.save(existingUser);
         return userMapper.toDTO(savedUser);
     }
+
 
 
     @Override
@@ -147,7 +149,6 @@ public class UserServiceImpl implements UserService {
     }
 
     // Validate if the username already exists
-
     public void validateUniqueUsername(String username) {
         Optional<User> existingUser = userRepository.findByUsername(username);
         existingUser.ifPresent(user -> {
