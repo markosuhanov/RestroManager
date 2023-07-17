@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.util.List;
 
 @Data
@@ -14,8 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="\"order\"")
+@Table(name = "orders")
 public class Order {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
