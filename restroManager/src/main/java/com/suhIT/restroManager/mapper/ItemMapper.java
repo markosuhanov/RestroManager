@@ -31,16 +31,15 @@ public class ItemMapper implements Mapper<Item, ItemDTO> {
 
     @Override
     public Item toEntity(ItemDTO itemDTO) {
-
         Item item = itemRepository.findByName(itemDTO.getName()).orElseThrow(
                 () -> new ItemNotFoundException(HttpStatus.NOT_FOUND,
                         "Item with name + " + itemDTO.getName() + " not found!"
                 ));
-        if (itemDTO instanceof FoodItemDTO) {
+        if (item instanceof FoodItem) {
             FoodItemDTO foodItemDTO = (FoodItemDTO) itemDTO;
             ((FoodItem) item).setAllergens(foodItemDTO.getAllergens());
             ((FoodItem) item).setPrepTime(foodItemDTO.getPrepTime());
-        } else if (itemDTO instanceof DrinkItemDTO) {
+        } else if (item instanceof DrinkItem) {
             DrinkItemDTO drinkItemDTO = (DrinkItemDTO) itemDTO;
             ((DrinkItem) item).setAllergens(drinkItemDTO.getAllergens());
             ((DrinkItem) item).setPrepTime(drinkItemDTO.getPrepTime());
@@ -66,6 +65,7 @@ public class ItemMapper implements Mapper<Item, ItemDTO> {
     @Override
     public ItemDTO toDTO(Item item) {
         ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setId(item.getId());
         itemDTO.setName(item.getName());
         itemDTO.setDescription(item.getDescription());
         itemDTO.setPrice(item.getPrice());

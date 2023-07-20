@@ -121,6 +121,19 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(accountNotActivatedException.getMessage(), accountNotActivatedException.getHttpStatus());
     }
 
+    @ExceptionHandler(value = OrderingNotFoundException.class)
+    public ResponseEntity<String> handleOrderingNotFoundException(
+            OrderingNotFoundException orderingNotFoundException) {
+        return new ResponseEntity<String>(orderingNotFoundException.getMessage(), orderingNotFoundException.getHttpStatus());
+    }
+
+    @ExceptionHandler(value = NotAllItemsPreparedException.class)
+    public ResponseEntity<String> handleNotAllItemsPreparedException(
+            NotAllItemsPreparedException notAllItemsPreparedException) {
+        return new ResponseEntity<String>(notAllItemsPreparedException.getMessage(), notAllItemsPreparedException.getHttpStatus());
+    }
+
+
 
 
 

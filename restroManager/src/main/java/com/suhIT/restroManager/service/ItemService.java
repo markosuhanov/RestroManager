@@ -22,7 +22,8 @@ public interface ItemService {
 
     List<ItemDTO> getAllActiveDrinkItems();
     List<ItemDTO> getAllPromotions();
-    List<ItemDTO> getItemByName();
+    ItemDTO getItemByName(String itemName);
+
     void deactivateItem();
     void activateItem();
 

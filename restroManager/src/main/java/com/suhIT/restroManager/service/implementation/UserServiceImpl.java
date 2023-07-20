@@ -44,8 +44,9 @@ public class UserServiceImpl implements UserService {
         User user = User.builder().firstName(userDTO.getFirstName()).lastName(userDTO.getLastName())
                 .username(userDTO.getUsername()).email(userDTO.getEmail()).password(pass)
                 .role(userDTO.getRole()).active(userDTO.isActive()).build();
-        User createdUser = userRepository.save(user);
-        return userMapper.toDTO(createdUser);
+        UserDTO userDTOnew = userMapper.toDTO(userRepository.save(user));
+        userDTOnew.setPassword(null);
+        return userDTOnew;
     }
 
     @Override
@@ -68,8 +69,9 @@ public class UserServiceImpl implements UserService {
         existingUser.setEmail(updatedUser.getEmail());
 
         existingUser.setPassword(updatedUser.getPassword());
-        User savedUser = userRepository.save(existingUser);
-        return userMapper.toDTO(savedUser);
+        UserDTO savedUser =userMapper.toDTO(userRepository.save(existingUser));
+        savedUser.setPassword(null);
+        return savedUser;
     }
 
 
@@ -125,7 +127,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO getLoggedUser() {
         try {
-            return getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+            UserDTO userDTO = getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+            return userDTO;
         } catch (Exception e) {
             if (e instanceof NullPointerException ) {
                 return null;

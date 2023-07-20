@@ -25,6 +25,10 @@ public class OrderedItemServiceImpl implements OrderedItemService {
         return OrderedItem.builder().item(item).prepared(false).active(true).build();
     }
 
+    @Override
+    public void deleteById(Long id) {
+        orderedItemRepository.deleteById(id);
+    }
 
 
 }

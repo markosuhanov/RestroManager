@@ -14,16 +14,20 @@ import java.util.List;
 @Builder
 public class OrderingDTO {
 
+    private Long id;
+
     @NotNull(message = "Table has to be selected!")
     private String tableName;
 
-//    @NotNull(message = "Waiter username has to be selected!")
-//    private String waiterUsername;
 
     @NotNull(message = "There are no items selected in order!")
     private List<OrderedItemDTO> orderedItemDTOS;
 
     private double price;
+    private double cost;
+
+
+    private UserDTO waiter;
 
     private boolean isPlaced;
 }

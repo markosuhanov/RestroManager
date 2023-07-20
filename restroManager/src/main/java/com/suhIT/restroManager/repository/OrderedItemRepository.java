@@ -9,4 +9,5 @@ import java.util.Optional;
 
 public interface OrderedItemRepository extends JpaRepository<OrderedItem, Long> {
 
+    void deleteAllByOrdering(Ordering ordering);
 }

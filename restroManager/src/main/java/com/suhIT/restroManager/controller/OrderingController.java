@@ -1,6 +1,7 @@
 package com.suhIT.restroManager.controller;
 
-import com.suhIT.restroManager.dto.ItemDTO;
+import com.suhIT.restroManager.dto.OrderingDTO;
+import com.suhIT.restroManager.exception.OrderingNotFoundException;
 import com.suhIT.restroManager.service.OrderingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,16 +21,25 @@ public class OrderingController {
         this.orderingService = orderingService;
     }
 
-//    @PostMapping("/{itemType}")
-//    public ResponseEntity<ItemDTO> create(@Valid @RequestBody ItemDTO itemDTO, @PathVariable("itemType") String itemType) {
-//        ItemDTO item = itemService.createItem(itemDTO, itemType);
-//        return new ResponseEntity<>(item, HttpStatus.OK);
-//    }
+    @PostMapping
+    public ResponseEntity<OrderingDTO> create(@Valid @RequestBody OrderingDTO orderingDTO) {
+        return new ResponseEntity<>(orderingService.createOrder(orderingDTO), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderingDTO> getById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(orderingService.getById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
+        try {
+            orderingService.deleteById(id);
+        } catch (Exception e) {
+            throw new OrderingNotFoundException(HttpStatus.NOT_FOUND, "Order with ID:" + id + " not found!");
+        }
+        return new ResponseEntity<>("Order with ID " + id + "successfully deleted!", HttpStatus.OK);
+    }
 
 
-//    @PostMapping("/{itemType}")
-//    public ResponseEntity<ItemDTO> create(@Valid @RequestBody ItemDTO itemDTO, @PathVariable("itemType") String itemType) {
-//        ItemDTO item = itemService.createItem(itemDTO, itemType);
-//        return new ResponseEntity<>(item, HttpStatus.OK);
-//    }
 }

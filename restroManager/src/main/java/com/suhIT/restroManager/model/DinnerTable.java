@@ -25,8 +25,6 @@ public class DinnerTable {
     private int x;
     private int y;
 
-    @OneToOne(mappedBy = "table", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Ordering ordering;
 
 
 }

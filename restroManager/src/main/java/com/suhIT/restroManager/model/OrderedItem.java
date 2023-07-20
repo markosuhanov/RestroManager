@@ -22,13 +22,16 @@ public class OrderedItem {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "item_id")
     @NotNull(message = "Item has to be choosen!")
     private Item item;
 
     @NotNull(message = "Item prepared status has to be set!")
     private boolean prepared;
 
+
     @ManyToOne
+    @JoinColumn(name = "ordering_id")
     private Ordering ordering;
 
     private boolean active;

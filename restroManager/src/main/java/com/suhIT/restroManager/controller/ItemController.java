@@ -28,6 +28,11 @@ public class ItemController {
         return new ResponseEntity<>(item, HttpStatus.OK);
     }
 
+    @GetMapping("/{itemName}")
+    public ResponseEntity<ItemDTO> getByName( @PathVariable("itemName") String itemName) {
+        ItemDTO itemDto = itemService.getItemByName(itemName);
+        return new ResponseEntity<>(itemDto, HttpStatus.OK);
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<ItemDTO>> getAll() {

@@ -1,37 +1,51 @@
 package com.suhIT.restroManager.mapper;
 
 import com.suhIT.restroManager.dto.OrderedItemDTO;
-import com.suhIT.restroManager.exception.OrderedItemNotFound;
+import com.suhIT.restroManager.exception.ItemNotFoundException;
+import com.suhIT.restroManager.model.Item;
 import com.suhIT.restroManager.model.OrderedItem;
-import com.suhIT.restroManager.repository.OrderingRepository;
-import com.suhIT.restroManager.repository.OrderedItemRepository;
+import com.suhIT.restroManager.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+
+@Component
 
 public class OrderedItemMapper implements Mapper<OrderedItem, OrderedItemDTO> {
 
-    private final OrderedItemRepository orderedItemRepository;
-    private final OrderingRepository orderingRepository;
+    private final ItemMapper itemMapper;
 
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public OrderedItemMapper(OrderedItemRepository orderedItemRepository, OrderingRepository orderingRepository) {
-        this.orderedItemRepository = orderedItemRepository;
-        this.orderingRepository = orderingRepository;
+    public OrderedItemMapper( ItemMapper itemMapper, ItemRepository itemRepository) {
+        this.itemMapper = itemMapper;
+        this.itemRepository = itemRepository;
     }
 
     @Override
     public OrderedItem toEntity(OrderedItemDTO orderedItemDTO) {
-        OrderedItem orderedItem = orderedItemRepository.findById(orderedItemDTO.getId()).orElseThrow(
-                () -> new OrderedItemNotFound(HttpStatus.NOT_FOUND,
-                        "Ordered item with id + " + orderedItemDTO.getId() + " not found!"
+        Item item = itemRepository.findByName(orderedItemDTO.getItem().getName()).orElseThrow(
+                () -> new ItemNotFoundException(HttpStatus.NOT_FOUND,
+                        "Item with name + " + orderedItemDTO.getItem().getName() + " not found!"
                 ));
-        return null;
+        OrderedItem orderedItem = OrderedItem.builder()
+                .item(item)
+                .active(orderedItemDTO.isActive())
+                .prepared(orderedItemDTO.isPrepared())
+                .build();
+        return orderedItem;
 
     }
 
     @Override
     public OrderedItemDTO toDTO(OrderedItem orderedItem) {
-        return null;
+        return OrderedItemDTO.builder()
+                .item(itemMapper.toDTO(orderedItem.getItem()))
+                .prepared(orderedItem.isPrepared())
+                //.orderId(orderedItem.getOrdering().getId())
+                .build();
     }
+
+
 }

@@ -17,9 +17,7 @@ import javax.validation.constraints.NotNull;
 public class ItemDTO {
 
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long id;
+    private Long id;
     @NotBlank(message = "Item name is required")
     private String name;
     private String description;
@@ -30,8 +28,6 @@ public class ItemDTO {
     @NotNull(message = "You have set existence of item!")
     private boolean active;
     private String imgPath;
-//    @ManyToOne
-//    @JoinColumn(name = "item_category_id")
-//    @NotNull(message = "Item category is required")
+
     private String itemCategoryName;
 }

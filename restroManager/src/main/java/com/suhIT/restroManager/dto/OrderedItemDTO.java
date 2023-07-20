@@ -12,12 +12,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class OrderedItemDTO {
 
-    @NotNull(message = "Id of ordered item has to be set!")
-    private Long id;
     @NotNull(message = "Ordered item has to be chosen! ")
     private ItemDTO item;
     private boolean prepared;
-    @NotNull(message = "Order id has to be set!")
-    private Long orderId;
+    private boolean active;
 
 }

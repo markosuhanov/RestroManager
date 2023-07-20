@@ -137,9 +137,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemDTO> getItemByName() {
-        return null;
+    public ItemDTO getItemByName(String itemName) {
+        ItemDTO itemDto = itemMapper.toDTO(itemRepository.findByName(itemName).orElseThrow(
+                () -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Item with name " + itemName + " not found!")));
+        return itemDto;
     }
+
+
 
     @Override
     public void deactivateItem() {

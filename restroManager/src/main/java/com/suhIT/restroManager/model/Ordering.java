@@ -1,15 +1,13 @@
 package com.suhIT.restroManager.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -24,8 +22,8 @@ public class Ordering {
     private double price;
     private double cost;
 
-
-    @OneToMany(mappedBy = "ordering", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ordering_id", referencedColumnName = "id")
     private List<OrderedItem> orderedItems;
 
     @OneToOne

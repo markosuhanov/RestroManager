@@ -4,11 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,12 +22,13 @@ public class Bill {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "waiter_id")
-    private User waiter;
+    private String waiter;
+
+    @ManyToMany
+    private List<Item> items;
 
     private double price;
     private double cost;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     private boolean paid;
 }

@@ -9,5 +9,7 @@ public interface OrderedItemService {
 
     OrderedItem createOrderedItemFromItem(Item item);
 
+    void deleteById(Long id);
+
 
 }

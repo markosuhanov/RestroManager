@@ -112,3 +112,6 @@ INSERT INTO item (id, name, description, price, cost, active, img_path, item_cat
 INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (456789012345679, 'Latte', 'Kafa sa mlekom i mlečnom penu', 250.0, 67.5, true, null, 7890123456789012, 'Mleko', 4, 'drink');
 #
 
+INSERT INTO dinner_table (id, name, x, y) VALUES (12345, 'Table1', 10, 15);
+INSERT INTO dinner_table (id, name, x, y) VALUES (67890, 'Table2', 20, 25);
+
