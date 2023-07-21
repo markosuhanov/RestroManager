@@ -1,5 +1,6 @@
 package com.suhIT.restroManager.service;
 
+import com.suhIT.restroManager.dto.OrderedItemDTO;
 import com.suhIT.restroManager.model.Item;
 import com.suhIT.restroManager.model.OrderedItem;
 
@@ -12,4 +13,7 @@ public interface OrderedItemService {
     void deleteById(Long id);
 
 
+    OrderedItem getById(Long id);
+
+    OrderedItemDTO orderedItemPrepared(Long orderedItemId);
 }

@@ -39,6 +39,7 @@ public class ItemMapper implements Mapper<Item, ItemDTO> {
             FoodItemDTO foodItemDTO = (FoodItemDTO) itemDTO;
             ((FoodItem) item).setAllergens(foodItemDTO.getAllergens());
             ((FoodItem) item).setPrepTime(foodItemDTO.getPrepTime());
+            ((FoodItem) item).setPortionSize(foodItemDTO.getPortionSize());
         } else if (item instanceof DrinkItem) {
             DrinkItemDTO drinkItemDTO = (DrinkItemDTO) itemDTO;
             ((DrinkItem) item).setAllergens(drinkItemDTO.getAllergens());

@@ -42,8 +42,8 @@ public class OrderedItemMapper implements Mapper<OrderedItem, OrderedItemDTO> {
     public OrderedItemDTO toDTO(OrderedItem orderedItem) {
         return OrderedItemDTO.builder()
                 .item(itemMapper.toDTO(orderedItem.getItem()))
+                .id(orderedItem.getId())
                 .prepared(orderedItem.isPrepared())
-                //.orderId(orderedItem.getOrdering().getId())
                 .build();
     }
 

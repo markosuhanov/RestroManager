@@ -78,13 +78,5 @@ public class BillServiceImplementation implements BillService {
     }
 
 
-    public void areAllItemsPrepared(List<OrderedItemDTO> orderedItemDTOS) {
-        for (OrderedItemDTO dto: orderedItemDTOS) {
-            if (!dto.isPrepared()) {
-                throw new NotAllItemsPreparedException(HttpStatus.BAD_REQUEST,
-                        "Item with name " + dto.getItem().getName() + " is not prepared!"
-                );
-            }
-        }
-    }
+
 }
