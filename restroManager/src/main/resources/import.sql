@@ -65,19 +65,19 @@ INSERT INTO item_category (id, name, active) VALUES (2345678901234567, 'Sendvič
 # -- ~~~~~~~~~~~~~~~~~~~ITEMS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # -- Food Items for Sendvic category
-INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (123456789012346, 'Kulen sendvič', 'Sendvič sa kulenom', 900.0, 243.0, true, null, 2345678901234567, 'Gluten, soja', 9, 'food');
+INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type,portion_size) VALUES (123456789012346, 'Kulen sendvič', 'Sendvič sa kulenom', 900.0, 243.0, true, null, 2345678901234567, 'Gluten, soja', 9, 'food', 250.0);
 
-INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (234567890123457, 'Pileći sendvič', 'Sendvič sa piletinom', 800.0, 216.0, true, null, 2345678901234567, 'Gluten, soja', 10, 'food');
+INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type,portion_size) VALUES (234567890123457, 'Pileći sendvič', 'Sendvič sa piletinom', 800.0, 216.0, true, null, 2345678901234567, 'Gluten, soja', 10, 'food', 250.0);
 
-INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (345678901234568, 'Vegetarijanski sendvič', 'Sendvič sa povrćem', 700.0, 189.0, true, null, 2345678901234567, 'Gluten, soja', 9, 'food');
+INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type,portion_size) VALUES (345678901234568, 'Vegetarijanski sendvič', 'Sendvič sa povrćem', 700.0, 189.0, true, null, 2345678901234567, 'Gluten, soja', 9, 'food', 250.0);
 
 -- Food Items for Burger category
 #
-INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (567890123456780, 'Classic burger', 'Klasični burger', 750.0, 202.5, true, null, 3456789012345678, 'Gluten, jaja, soja', 22, 'food');
+INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type,portion_size) VALUES (567890123456780, 'Classic burger', 'Klasični burger', 750.0, 202.5, true, null, 3456789012345678, 'Gluten, jaja, soja', 22, 'food', 250.0);
 
-INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (678901234567891, 'Veggie burger', 'Burger sa povrćem', 650.0, 175.5, true, null, 3456789012345678, 'Gluten, soja', 18, 'food');
+INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type,portion_size) VALUES (678901234567891, 'Veggie burger', 'Burger sa povrćem', 650.0, 175.5, true, null, 3456789012345678, 'Gluten, soja', 18, 'food', 250.0);
 
--- Drink Items for Pivo category
+-- Drink Items for vo category
 INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (789012345678902, 'Lager', 'Svetlo pivo', 350.0, 94.5, true, null, 5678901234567890, 'Ječam', 2, 'drink');
 
 INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (890123456789013, 'IPA', 'India Pale Ale', 450.0, 121.5, true, null, 5678901234567890, 'Ječam', 2, 'drink');

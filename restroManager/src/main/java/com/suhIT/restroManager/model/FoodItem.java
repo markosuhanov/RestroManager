@@ -19,5 +19,6 @@ public class FoodItem extends Item {
 
     private String allergens;
     private int prepTime;
+    private double portionSize;
 
 }

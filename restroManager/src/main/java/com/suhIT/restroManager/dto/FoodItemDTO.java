@@ -13,5 +13,7 @@ public class FoodItemDTO extends ItemDTO {
 
     private String allergens;
     private int prepTime;
+    private double portionSize;
+
 
 }
