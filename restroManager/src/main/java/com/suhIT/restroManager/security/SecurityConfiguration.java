@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -23,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 
-    private  UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
     public SecurityConfiguration(UserDetailsService userDetailsService) {
@@ -66,8 +65,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 */
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().anyRequest().permitAll().and().httpBasic();
+//        httpSecurity.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//                .authorizeRequests().anyRequest().permitAll().and().httpBasic();
 		/* Moze samo jednom da se koristi
 		httpSecurity
 		.csrf().disable()
@@ -75,6 +74,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 			.antMatchers("/**").permitAll();
 		*/
+
+        httpSecurity.cors().and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests().antMatchers("/**").permitAll()
+                .antMatchers("/**").permitAll();
+
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
         //httpSecurity.addFilterBefore(myCorsFilteBean(), Filter.class);
     }
