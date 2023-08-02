@@ -21,4 +21,8 @@ public interface OrderingService {
     OrderedItemDTO itemMade(Long orderedItemId);
 
     List<OrderingDTO> getAll();
+
+    OrderingDTO updateOrder(OrderingDTO orderingDTO);
+
+    OrderingDTO getByTableName(String tableName);
 }

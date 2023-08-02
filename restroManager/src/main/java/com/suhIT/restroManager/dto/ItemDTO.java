@@ -28,6 +28,9 @@ public class ItemDTO {
     @NotNull(message = "You have set existence of item!")
     private boolean active;
     private String imgPath;
+    private String itemType;
+    private String allergens;
+
 
     private String itemCategoryName;
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public interface ItemService {
 
     ItemDTO createItem(ItemDTO itemDTO, String itemType);
-    ItemDTO updateItem(ItemDTO itemDTO);
+    ItemDTO updateItem(Long id, ItemDTO itemDTO);
     List<ItemDTO> getAllItems();
 
     List<ItemDTO> getAllActiveItems();
@@ -24,7 +24,11 @@ public interface ItemService {
     List<ItemDTO> getAllPromotions();
     ItemDTO getItemByName(String itemName);
 
-    void deactivateItem();
-    void activateItem();
 
+    ItemDTO deactivateItem(Long itemId);
+
+
+    ItemDTO activateItem(Long itemId);
+
+    ItemDTO getItemById(Long itemId);
 }

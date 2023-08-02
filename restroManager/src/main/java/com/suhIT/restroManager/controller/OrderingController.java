@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/orders")
 public class OrderingController {
@@ -28,6 +29,12 @@ public class OrderingController {
         return new ResponseEntity<>(orderingService.createOrder(orderingDTO), HttpStatus.CREATED);
     }
 
+    @PutMapping
+    public ResponseEntity<OrderingDTO> update(@Valid @RequestBody OrderingDTO orderingDTO) {
+
+        return new ResponseEntity<>(orderingService.updateOrder(orderingDTO), HttpStatus.CREATED);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<OrderingDTO> getById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(orderingService.getById(id), HttpStatus.OK);
@@ -37,6 +44,11 @@ public class OrderingController {
     @GetMapping("/all")
     public ResponseEntity<List<OrderingDTO>> getAll() {
         return new ResponseEntity<>(orderingService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/table/{tableName}")
+    public ResponseEntity<OrderingDTO> getOrderByTable(@PathVariable String tableName) {
+        return new ResponseEntity<>(orderingService.getByTableName(tableName), HttpStatus.OK);
     }
 
 //    @GetMapping("/{orderId}/getAllDrinks")

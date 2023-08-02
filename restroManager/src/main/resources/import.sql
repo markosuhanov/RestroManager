@@ -1,20 +1,28 @@
 -- ~~~~~~~~~~~~~~~~~~~USERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- User data
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (123456789, 'Jelena', 'Jankovic', 'janeSmith', 'jane@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'MANAGER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (234567890, 'Aleksandar', 'Aleksic', 'alexA92', 'alex@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'COOK', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (345678901, 'Jovan', 'Jovanovic', 'jovan85', 'john@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'ADMIN', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (456789012, 'Emilija', 'Emic', 'emmaE23', 'emma@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'WAITER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (567890123, 'Mihajlo', 'Mihajlovic', 'michaelM', 'michael@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (678901234, 'Sara', 'Savic', 'sara_s', 'sarah@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (789012345, 'David', 'Davidovic', 'david_22', 'david@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'MANAGER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (890123456, 'Emilija', 'Eric', 'emilyE45', 'emily@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'COOK', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (901234567, 'Rajko', 'Rajic', 'ryanR98', 'ryan@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'WAITER', true);
-INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (1234567890, 'Olivera', 'Obradovic', 'oliviaO', 'olivia@example.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', false);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (123456789, 'Jelena', 'Jankovic', 'janeSmith', 'jane@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'MANAGER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (234567890, 'Aleksandar', 'Aleksic', 'alexA92', 'alex@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'COOK', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (345678901, 'Jovan', 'Jovanovic', 'jovan85', 'john@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'ADMIN', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (456789012, 'Emilija', 'Emic', 'emmaE23', 'emma@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'WAITER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (567890123, 'Mihajlo', 'Mihajlovic', 'michaelM', 'michael@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (678901234, 'Sara', 'Savic', 'sara_s', 'sarah@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (789012345, 'David', 'Davidovic', 'david_22', 'david@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'MANAGER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (890123456, 'Emilija', 'Eric', 'emilyE45', 'emily@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'COOK', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (901234567, 'Rajko', 'Rajic', 'ryanR98', 'ryan@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'WAITER', true);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (1234567890, 'Olivera', 'Obradovic', 'oliviaO', 'olivia@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'BARTENDER', false);
+INSERT INTO user (id, first_name, last_name, username, email, password, role, active) VALUES (9745563489, 'Marko', 'Nikolic', 'markoniko', 'markoniko@gmail.com', '$2a$10$iOzChqe0nYpBSxKeCFEeT.4JWz2ZGO4GA.2.lWvtGVQZn27.pRdfS', 'ROOM_MANAGER', true);
+
+
 
 -- ~~~~~~~~~~~~~~~~~~~SALARIES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- Salary data for user with ID 123456789 (Jelena Jankovic)
 INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (1234567891, 2000, '2023-01-01', '2023-01-31', 123456789, false);
 INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (2345678901, 2100, '2023-02-01', null, 123456789, true);
+
+
+-- Salary data for user with ID 97455634890 (Marko Nikolic)
+INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (4932453214, 6000, '2023-01-01', '2023-01-31', 9745563489, false);
+INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (2345678901, 4200, '2023-02-01', null, 9745563489, true);
 
 -- Salary data for user with ID 234567890 (Aleksandar Aleksic)
 INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (3456789011, 1800, '2023-01-01', '2023-01-31', 234567890, false);
@@ -60,7 +68,7 @@ INSERT INTO item_category (id, name, active) VALUES (4567890123456789, 'Palacink
 INSERT INTO item_category (id, name, active) VALUES (5678901234567890, 'Pivo', true);
 INSERT INTO item_category (id, name, active) VALUES (6789012345678901, 'Sok', true);
 INSERT INTO item_category (id, name, active) VALUES (7890123456789012, 'Kafa', true);
-INSERT INTO item_category (id, name, active) VALUES (2345678901234567, 'Sendvič', true);
+INSERT INTO item_category (id, name, active) VALUES (2345678901234567, 'Sendvic', true);
 
 # -- ~~~~~~~~~~~~~~~~~~~ITEMS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -112,6 +120,11 @@ INSERT INTO item (id, name, description, price, cost, active, img_path, item_cat
 INSERT INTO item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (456789012345679, 'Latte', 'Kafa sa mlekom i mlečnom penu', 250.0, 67.5, true, null, 7890123456789012, 'Mleko', 4, 'drink');
 #
 
-INSERT INTO dinner_table (id, name, x, y) VALUES (12345, 'Table1', 10, 15);
-INSERT INTO dinner_table (id, name, x, y) VALUES (67890, 'Table2', 20, 25);
+INSERT INTO dinner_table (id, name, x, y, width, height, is_available) VALUES (12345, 'Table1', 10, 15, 0 , 0, true);
+INSERT INTO dinner_table (id, name, x, y, width, height, is_available) VALUES (23456, 'Table2', 10, 15, 0 , 0, true);
+INSERT INTO dinner_table (id, name, x, y, width, height, is_available) VALUES (34567, 'Table3', 10, 15, 0 , 0, true);
+INSERT INTO dinner_table (id, name, x, y, width, height, is_available) VALUES (45678, 'Table4', 10, 15, 0 , 0, false);
+INSERT INTO dinner_table (id, name, x, y, width, height, is_available) VALUES (56789, 'Table5', 10, 15, 0 , 0, true);
+
+
 

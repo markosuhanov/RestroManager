@@ -22,7 +22,7 @@ public class Ordering {
     private double price;
     private double cost;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ordering_id", referencedColumnName = "id")
     private List<OrderedItem> orderedItems;
 

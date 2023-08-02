@@ -133,6 +133,14 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(notAllItemsPreparedException.getMessage(), notAllItemsPreparedException.getHttpStatus());
     }
 
+    @ExceptionHandler(value = DinnerTableNotFoundException.class)
+    public ResponseEntity<String> handleDinnerTableNotFoundException(
+            DinnerTableNotFoundException dinnerTableNotFoundException) {
+        return new ResponseEntity<String>(dinnerTableNotFoundException.getMessage(), dinnerTableNotFoundException.getHttpStatus());
+    }
+
+
+
 
 
 

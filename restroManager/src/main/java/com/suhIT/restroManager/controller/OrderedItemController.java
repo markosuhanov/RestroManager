@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/orderedItems")
 public class OrderedItemController {
@@ -20,7 +21,7 @@ public class OrderedItemController {
         this.orderedItemService = orderedItemService;
     }
 
-    @GetMapping("/{id}/prepared")
+    @PatchMapping("/{id}/prepared")
     public ResponseEntity<OrderedItemDTO> orderedItemPrepared(@PathVariable("id") Long orderedItemId) {
         return new ResponseEntity<>(orderedItemService.orderedItemPrepared(orderedItemId), HttpStatus.OK);
     }

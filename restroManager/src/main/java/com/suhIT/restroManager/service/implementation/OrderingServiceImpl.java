@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,7 +67,9 @@ public class OrderingServiceImpl implements OrderingService {
         double totalCost = orderedItems.stream()
                 .mapToDouble(orderedItem -> orderedItem.getItem().getCost())
                 .sum();
-        User waiter = userMapper.toEntity(userService.getLoggedUser());
+//        User waiter = userMapper.toEntity(userService.getLoggedUser());
+        User waiter = this.userMapper.toEntity(this.userService.getUserByUsername(orderDto.getWaiter().getUsername()));
+
         boolean isPlaced = false;
         Ordering newOrdering = Ordering.builder()
                 .table(table)
@@ -138,6 +141,56 @@ public class OrderingServiceImpl implements OrderingService {
     public List<OrderingDTO> getAll() {
         List<Ordering> orderings = orderingRepository.findAll();
         return orderings.stream().map(orderingMapper::toDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public OrderingDTO updateOrder(OrderingDTO orderingDTO) {
+
+        Ordering ordering = this.orderingRepository.findByTable_Name(orderingDTO.getTableName()).orElse(null);
+        ordering.setWaiter(this.userMapper.toEntity(orderingDTO.getWaiter()));
+
+
+        // Convert the new orderedItems from DTO to entities
+        List<OrderedItem> newOrderedItems = orderingDTO.getOrderedItemDTOS()
+                .stream()
+                .map(this.orderedItemMapper::toEntity)
+                .collect(Collectors.toList());
+
+        // Remove the items that are no longer present in the updated orderingDTO
+        List<OrderedItem> itemsToRemove = new ArrayList<>();
+        for (OrderedItem existingItem : ordering.getOrderedItems()) {
+            if (!newOrderedItems.contains(existingItem)) {
+                itemsToRemove.add(existingItem);
+            }
+        }
+
+        // Remove the identified items from the database
+        for (OrderedItem itemToRemove : itemsToRemove) {
+            itemToRemove.setOrdering(null);
+            ordering.getOrderedItems().remove(itemToRemove);
+            this.orderedItemRepository.delete(itemToRemove);
+        }
+
+        ordering.setOrderedItems(newOrderedItems);
+        ordering.setPrice(newOrderedItems.stream().mapToDouble(orderedItem -> orderedItem.getItem().getPrice()).sum());
+        ordering.setCost(newOrderedItems.stream().mapToDouble(orderedItem -> orderedItem.getItem().getCost()).sum());
+        ordering.setTable(this.dinnerTableRepository.findByName(ordering.getTable().getName()).get());
+        ordering.setPlaced(orderingDTO.isPlaced());
+        return this.orderingMapper.toDTO(this.orderingRepository.save(ordering));
+    }
+
+    @Override
+    public OrderingDTO getByTableName(String tableName) {
+//        Ordering ordering = this.orderingRepository.findByTable_Name(tableName).orElseThrow(
+//                () -> new OrderingNotFoundException(HttpStatus.NOT_FOUND,
+//                        "Ordering where table name is " + tableName + " not found!"
+//                ));
+
+        Ordering ordering = this.orderingRepository.findByTable_Name(tableName).orElse(null);
+        if(ordering == null){
+            return null;
+        }
+        return orderingMapper.toDTO(ordering);
     }
 
 }

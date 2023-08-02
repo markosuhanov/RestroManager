@@ -1,25 +1,19 @@
-package com.suhIT.restroManager.model;
+package com.suhIT.restroManager.dto;
 
 
 import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-
 
 @Getter
 @Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-public class DinnerTable {
+public class DinnerTableDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotBlank(message = "Table name is necessary!")
     private String name;
     private int x;
@@ -27,7 +21,4 @@ public class DinnerTable {
     private Integer width;
     private Integer height;
     private boolean isAvailable;
-
-
-
 }

@@ -3,7 +3,6 @@ package com.suhIT.restroManager.service.implementation;
 import com.suhIT.restroManager.dto.DrinkItemDTO;
 import com.suhIT.restroManager.dto.FoodItemDTO;
 import com.suhIT.restroManager.dto.ItemDTO;
-import com.suhIT.restroManager.dto.UserDTO;
 import com.suhIT.restroManager.exception.*;
 import com.suhIT.restroManager.mapper.ItemMapper;
 import com.suhIT.restroManager.model.*;
@@ -81,13 +80,23 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
-
     @Override
-    public ItemDTO updateItem(ItemDTO itemDTO) {
-        //TODO: IMPLEMENT updateItem !!!
-        return null;
-    }
+    public ItemDTO updateItem(Long id, ItemDTO itemDTO) {
+        Item existingItem = itemRepository.findById(id).orElseThrow(
+                () -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Item with id " + id + " not found"));
+        if (!existingItem.getName().equals(itemDTO.getName())) {
+            validateUniqueItemName(itemDTO.getName());
+        }
 
+        existingItem.setActive(itemDTO.isActive());
+        existingItem.setName(itemDTO.getName());
+        existingItem.setItemCategory(this.itemCategoryRepository.findByName(itemDTO.getItemCategoryName()).get());
+        existingItem.setPrice(itemDTO.getPrice());
+        existingItem.setCost(itemDTO.getCost());
+        existingItem.setDescription(itemDTO.getDescription());
+        existingItem.setImgPath(itemDTO.getImgPath());
+        return itemMapper.toDTO(itemRepository.save(existingItem));
+    }
     @Override
     public List<ItemDTO> getAllItems() {
 
@@ -146,15 +155,32 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public void deactivateItem() {
+    public ItemDTO deactivateItem(Long itemId) {
 
-
+        Item item = itemRepository.findById(itemId).orElseThrow(
+                () -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Item with id " + itemId + " not found!"));
+        item.setActive(false);
+        itemRepository.save(item);
+        return itemMapper.toDTO(item);
     }
 
     @Override
-    public void activateItem() {
-
+    public ItemDTO activateItem(Long itemId) {
+        Item item = itemRepository.findById(itemId).orElseThrow(
+                () -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Item with id " + itemId + " not found!"));
+        item.setActive(true);
+        itemRepository.save(item);
+        return itemMapper.toDTO(item);
     }
+
+    @Override
+    public ItemDTO getItemById(Long itemId) {
+        Item item =  itemRepository.findById(itemId).orElseThrow(
+                () -> new ItemNotFoundException(HttpStatus.NOT_FOUND, "Item with id " + itemId + " not found!"));
+        return itemMapper.toDTO(item);
+    }
+
+
 
     public void validateUniqueItemName(String name) {
 

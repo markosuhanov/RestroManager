@@ -80,6 +80,8 @@ public class ItemMapper implements Mapper<Item, ItemDTO> {
             BeanUtils.copyProperties(itemDTO, foodItemDTO);
             foodItemDTO.setAllergens(foodItem.getAllergens());
             foodItemDTO.setPrepTime(foodItem.getPrepTime());
+            foodItemDTO.setItemType("food");
+            foodItemDTO.setAllergens(foodItem.getAllergens());
             return foodItemDTO;
         } else if (item instanceof DrinkItem) {
             DrinkItem drinkItem = (DrinkItem) item;
@@ -87,6 +89,8 @@ public class ItemMapper implements Mapper<Item, ItemDTO> {
             BeanUtils.copyProperties(itemDTO, drinkItemDTO);
             drinkItemDTO.setAllergens(drinkItem.getAllergens());
             drinkItemDTO.setPrepTime(drinkItem.getPrepTime());
+            drinkItemDTO.setAllergens(drinkItem.getAllergens());
+            drinkItemDTO.setItemType("drink");
             return drinkItemDTO;
             //TODO: Dodati else if za promotion
         } else {
