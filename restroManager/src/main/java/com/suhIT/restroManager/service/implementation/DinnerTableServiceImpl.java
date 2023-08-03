@@ -27,6 +27,19 @@ public class DinnerTableServiceImpl implements DinnerTableService {
     }
 
     @Override
+    public DinnerTableDTO setAsBusy(String name) {
+        DinnerTable dinnerTable = this.dinnerTableRepository.findByName(name).orElseThrow(() -> new TableNotFoundException(HttpStatus.NOT_FOUND, "Available tables not found!"));
+        dinnerTable.setAvailable(false);
+        return this.dinnerTableMapper.toDTO(this.dinnerTableRepository.save(dinnerTable));
+    }
+
+    @Override
+    public DinnerTableDTO setAsFree(String name) {
+        DinnerTable dinnerTable = this.dinnerTableRepository.findByName(name).orElseThrow(() -> new TableNotFoundException(HttpStatus.NOT_FOUND, "Available tables not found!"));
+        dinnerTable.setAvailable(true);
+        return this.dinnerTableMapper.toDTO(this.dinnerTableRepository.save(dinnerTable));
+    }
+    @Override
     public List<DinnerTableDTO> getAllTables() {
         return this.dinnerTableRepository.findAll().stream().map(dinnerTableMapper::toDTO).collect(Collectors.toList());
     }

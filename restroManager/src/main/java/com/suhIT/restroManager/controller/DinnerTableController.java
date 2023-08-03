@@ -28,7 +28,7 @@ public class DinnerTableController {
         return new ResponseEntity<>(tables, HttpStatus.OK);
     }
 
-        @GetMapping("/allAvailable")
+    @GetMapping("/allAvailable")
     public ResponseEntity<List<DinnerTableDTO>> getAllAvailable() {
         List<DinnerTableDTO> tables = dinnerTableService.getAllAvailableTables();
         return new ResponseEntity<>(tables, HttpStatus.OK);
@@ -40,6 +40,17 @@ public class DinnerTableController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+    @PatchMapping("/busy/{name}")
+    public ResponseEntity<DinnerTableDTO> setAsBusy(@PathVariable String name) {
+        DinnerTableDTO dto = dinnerTableService.setAsBusy(name);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @PatchMapping("/free/{name}")
+    public ResponseEntity<DinnerTableDTO> setAsFree(@PathVariable String name) {
+        DinnerTableDTO dto = dinnerTableService.setAsFree(name);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 
 
 

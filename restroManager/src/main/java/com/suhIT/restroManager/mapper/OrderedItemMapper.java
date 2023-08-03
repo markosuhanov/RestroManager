@@ -33,6 +33,7 @@ public class OrderedItemMapper implements Mapper<OrderedItem, OrderedItemDTO> {
                 .item(item)
                 .active(orderedItemDTO.isActive())
                 .prepared(orderedItemDTO.isPrepared())
+
                 .build();
         return orderedItem;
 

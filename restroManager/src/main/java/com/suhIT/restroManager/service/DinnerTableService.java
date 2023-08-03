@@ -9,5 +9,8 @@ public interface DinnerTableService {
     List<DinnerTableDTO> getAllAvailableTables();
 
     DinnerTableDTO deleteByName(String name);
+    DinnerTableDTO setAsBusy(String name);
+
+    DinnerTableDTO setAsFree(String name);
 
 }

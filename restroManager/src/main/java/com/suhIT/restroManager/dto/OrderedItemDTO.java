@@ -17,5 +17,6 @@ public class OrderedItemDTO {
     private ItemDTO item;
     private boolean prepared;
     private boolean active;
+    
 
 }

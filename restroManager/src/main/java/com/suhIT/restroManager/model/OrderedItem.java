@@ -34,5 +34,7 @@ public class OrderedItem {
     @JoinColumn(name = "ordering_id")
     private Ordering ordering;
 
+
+
     private boolean active;
 }

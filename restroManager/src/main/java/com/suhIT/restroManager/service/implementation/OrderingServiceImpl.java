@@ -12,6 +12,7 @@ import com.suhIT.restroManager.model.*;
 import com.suhIT.restroManager.repository.DinnerTableRepository;
 import com.suhIT.restroManager.repository.OrderedItemRepository;
 import com.suhIT.restroManager.repository.OrderingRepository;
+import com.suhIT.restroManager.service.DinnerTableService;
 import com.suhIT.restroManager.service.OrderedItemService;
 import com.suhIT.restroManager.service.OrderingService;
 import com.suhIT.restroManager.service.UserService;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 public class OrderingServiceImpl implements OrderingService {
 
     private final DinnerTableRepository dinnerTableRepository;
+    private final DinnerTableService dinnerTableService;
     private final OrderedItemService orderedItemService;
     private final UserMapper userMapper;
     private final UserService userService;
@@ -38,8 +40,9 @@ public class OrderingServiceImpl implements OrderingService {
     @Autowired
     public OrderingServiceImpl(DinnerTableRepository dinnerTableRepository,
                                OrderedItemService orderedItemService, UserService userService, UserMapper userMapper, OrderedItemMapper orderedItemMapper, OrderingMapper orderingMapper,OrderingRepository orderingRepository,
-                               OrderedItemRepository orderedItemRepository) {
+                               OrderedItemRepository orderedItemRepository, DinnerTableService dinnerTableService) {
         this.dinnerTableRepository = dinnerTableRepository;
+        this.dinnerTableService = dinnerTableService;
         this.orderedItemService = orderedItemService;
         this.userService = userService;
         this.userMapper = userMapper;
@@ -79,7 +82,7 @@ public class OrderingServiceImpl implements OrderingService {
                 .cost(totalCost)
                 .isPlaced(isPlaced)
                 .build();
-
+        this.dinnerTableService.setAsBusy(table.getName());
         return orderingMapper.toDTO(orderingRepository.save(newOrdering));
     }
 
