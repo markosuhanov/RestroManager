@@ -10,7 +10,7 @@ public interface ItemCategoryService {
 
     void validateUniqueItemCategoryName(String name);
 
-    ItemCategoryDTO updateItemCategory(String name, ItemCategoryDTO itemDTO);
+    ItemCategoryDTO updateItemCategory(Long id, ItemCategoryDTO itemDTO);
 
     List<ItemCategoryDTO> getAllItemCategories();
 

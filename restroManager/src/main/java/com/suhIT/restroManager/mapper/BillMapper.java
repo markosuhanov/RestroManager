@@ -14,10 +14,12 @@ import java.util.stream.Collectors;
 public class BillMapper implements Mapper<Bill, BillDTO> {
 
     private final ItemMapper itemMapper;
+    private final UserMapper userMapper;
 
     @Autowired
-    public BillMapper(ItemMapper itemMapper) {
+    public BillMapper(ItemMapper itemMapper, UserMapper userMapper) {
         this.itemMapper = itemMapper;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -30,7 +32,9 @@ public class BillMapper implements Mapper<Bill, BillDTO> {
         List<ItemDTO> itemDTOs = bill.getItems().stream().map(itemMapper::toDTO).collect(Collectors.toList());
         return BillDTO.builder()
                 .id(bill.getId())
-                .waiter(bill.getWaiter())
+                .waiter(userMapper.toDTO(bill.getWaiter()))
+                .cook(bill.getCook() == null ? null : userMapper.toDTO(bill.getCook()))
+                .bartender(bill.getBartender() == null ? null : userMapper.toDTO(bill.getBartender()))
                 .items(itemDTOs)
                 .price(bill.getPrice())
                 .cost(bill.getCost())
@@ -39,3 +43,4 @@ public class BillMapper implements Mapper<Bill, BillDTO> {
                 .build();
     }
 }
+

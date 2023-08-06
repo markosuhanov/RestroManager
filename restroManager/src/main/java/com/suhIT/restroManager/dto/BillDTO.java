@@ -1,6 +1,7 @@
 package com.suhIT.restroManager.dto;
 
 import com.suhIT.restroManager.model.Item;
+import com.suhIT.restroManager.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +19,9 @@ import java.util.UUID;
 @Builder
 public class BillDTO {
     private Long id;
-    private String waiter;
+    private UserDTO waiter;
+    private UserDTO cook;
+    private UserDTO bartender;
     private List<ItemDTO> items;
     private double price;
     private double cost;

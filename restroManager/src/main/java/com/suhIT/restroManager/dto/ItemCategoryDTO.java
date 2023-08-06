@@ -13,9 +13,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 public class ItemCategoryDTO {
-
-    @NotBlank(message = "Category name of item is required!")
+    private Long id;
     private String name;
-    @NotNull(message = "Item activity is required")
     private boolean active;
 }

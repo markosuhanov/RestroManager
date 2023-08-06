@@ -28,13 +28,13 @@ public class ItemCategoryController {
         return new ResponseEntity<>(itemCategoryService.createItemCategory(dto), HttpStatus.CREATED);
     }
 
-//    @PutMapping("/update/{name}")
-//    public ResponseEntity<Object> update(@PathVariable("name") String name,
-//                                         @RequestBody ItemCategoryDTO itemCategoryDTO) {
-//
-//        ItemCategoryDTO updatedItemCategory = itemCategoryService.updateItemCategory(name, itemCategoryDTO);
-//        return new ResponseEntity<>(updatedItemCategory, HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> update(@PathVariable("id") Long id,
+                                         @RequestBody ItemCategoryDTO itemCategoryDTO) {
+
+        ItemCategoryDTO updatedItemCategory = itemCategoryService.updateItemCategory(id, itemCategoryDTO);
+        return new ResponseEntity<>(updatedItemCategory, HttpStatus.OK);
+    }
 
 
     @GetMapping("/{name}")

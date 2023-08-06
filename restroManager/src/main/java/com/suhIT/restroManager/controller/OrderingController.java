@@ -29,6 +29,21 @@ public class OrderingController {
         return new ResponseEntity<>(orderingService.createOrder(orderingDTO), HttpStatus.CREATED);
     }
 
+    @PatchMapping("/itemPrepared{orderedItemId}")
+    public ResponseEntity<OrderedItemDTO> orderedItemPrepared(@PathVariable("orderedItemId") Long orderedItemId) {
+        return new ResponseEntity<>(orderingService.orderedItemPrepared(orderedItemId), HttpStatus.OK);
+    }
+
+    @GetMapping("/isPlaced{orderingId}")
+    public ResponseEntity<Boolean> isOrderPlaced(@PathVariable("orderingId") Long orderingId) {
+        return new ResponseEntity<>(orderingService.isOrderPlaced(orderingId), HttpStatus.OK);
+    }
+
+    @PutMapping("/takeOrder/{orderingId}")
+    public ResponseEntity<OrderingDTO> update(@PathVariable("orderingId") Long orderingId) {
+
+        return new ResponseEntity<>(orderingService.takeOrder(orderingId), HttpStatus.CREATED);
+    }
     @PutMapping
     public ResponseEntity<OrderingDTO> update(@Valid @RequestBody OrderingDTO orderingDTO) {
 

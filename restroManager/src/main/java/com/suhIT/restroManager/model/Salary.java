@@ -26,16 +26,13 @@ public class Salary {
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @DecimalMin(value = "0.0", message = "Amount must be a positive number!")
     private double amount;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate startDate;
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @Nullable
     private LocalDate endDate;
     @ManyToOne
     private User user;
-    @NotNull(message = "User activity is required")
     private boolean active;
 
     @Override

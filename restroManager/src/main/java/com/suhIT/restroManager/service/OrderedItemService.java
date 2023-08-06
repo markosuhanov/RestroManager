@@ -15,5 +15,4 @@ public interface OrderedItemService {
 
     OrderedItem getById(Long id);
 
-    OrderedItemDTO orderedItemPrepared(Long orderedItemId);
 }
