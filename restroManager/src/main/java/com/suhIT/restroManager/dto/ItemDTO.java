@@ -29,6 +29,9 @@ public class ItemDTO {
     private boolean active;
     private String imgPath;
     private String itemType;
+    private double portionSize;
+    private int prepTime;
+
     private String allergens;
 
 

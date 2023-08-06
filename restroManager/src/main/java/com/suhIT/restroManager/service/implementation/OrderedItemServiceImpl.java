@@ -7,6 +7,7 @@ import com.suhIT.restroManager.model.Item;
 import com.suhIT.restroManager.model.OrderedItem;
 import com.suhIT.restroManager.repository.OrderedItemRepository;
 import com.suhIT.restroManager.service.OrderedItemService;
+import com.suhIT.restroManager.service.OrderingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class OrderedItemServiceImpl implements OrderedItemService {
 
     private final OrderedItemRepository orderedItemRepository;
     private final OrderedItemMapper orderedItemMapper;
+
 
     @Autowired
     public OrderedItemServiceImpl(OrderedItemRepository orderedItemRepository, OrderedItemMapper orderedItemMapper) {
@@ -39,15 +41,7 @@ public class OrderedItemServiceImpl implements OrderedItemService {
                 () -> new OrderedItemNotFound(HttpStatus.NOT_FOUND, "Ordered item with id + " + id + " not found!"));
     }
 
-    @Override
-    public OrderedItemDTO orderedItemPrepared(Long orderedItemId) {
-        OrderedItem orderedItem = orderedItemRepository.findById(orderedItemId).orElseThrow(
-                () -> new OrderedItemNotFound(HttpStatus.NOT_FOUND,
-                        "Ordered item with id " + orderedItemId + " not found!"
-                ));
-        orderedItem.setPrepared(true);
-        return orderedItemMapper.toDTO(orderedItemRepository.save(orderedItem));
-    }
+
 
 
 }

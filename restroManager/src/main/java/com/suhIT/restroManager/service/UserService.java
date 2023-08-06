@@ -24,4 +24,5 @@ public interface UserService {
 
     UserDTO getLoggedUser();
 
+    List<String> getAllWaiterUsernames();
 }

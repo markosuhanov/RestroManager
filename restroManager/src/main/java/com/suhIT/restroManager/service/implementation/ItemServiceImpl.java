@@ -49,30 +49,24 @@ public class ItemServiceImpl implements ItemService {
         }
 
         Item item;
-        if (itemType.equals("foodItem")) {
+        if (itemType.equals("food")) {
             item = new FoodItem();
-            FoodItemDTO foodItemDTO = new FoodItemDTO();
-            BeanUtils.copyProperties(itemDTO, foodItemDTO);
-            ((FoodItem) item).setAllergens(foodItemDTO.getAllergens());
-            ((FoodItem) item).setPrepTime(foodItemDTO.getPrepTime());
-        } else if (itemType.equals("drinkItem")) {
+            BeanUtils.copyProperties(itemDTO, item);
+        } else if (itemType.equals("drink")) {
             item = new DrinkItem();
-            DrinkItemDTO drinkItemDTO = new DrinkItemDTO();
-            BeanUtils.copyProperties(itemDTO, drinkItemDTO);
-            ((DrinkItem) item).setAllergens(drinkItemDTO.getAllergens());
-            ((DrinkItem) item).setPrepTime(drinkItemDTO.getPrepTime());
+            BeanUtils.copyProperties(itemDTO, item);
         } else {
-            throw new BadRequest(HttpStatus.BAD_REQUEST, "Something went wrong!");
+            throw new BadRequest(HttpStatus.BAD_REQUEST, "Item type not choosen!");
         }
         item.setName(itemDTO.getName());
         item.setDescription(itemDTO.getDescription());
         item.setPrice(itemDTO.getPrice());
         item.setCost(itemDTO.getCost());
-        item.setActive(itemDTO.isActive());
+        item.setActive(true);
         item.setImgPath(itemDTO.getImgPath());
         ItemCategory itemCategory = itemCategoryRepository.findByName(itemDTO.getItemCategoryName()).orElseThrow(
                 () -> new ItemCategoryNotFound(HttpStatus.BAD_REQUEST,
-                        "Item category with name " + itemDTO.getName() + " not found!"
+                        "Item category with name " + itemDTO.getItemCategoryName() + " not found!"
                 ));
         item.setItemCategory(itemCategory);
         itemRepository.save(item);
@@ -88,18 +82,20 @@ public class ItemServiceImpl implements ItemService {
             validateUniqueItemName(itemDTO.getName());
         }
 
-        existingItem.setActive(itemDTO.isActive());
-        existingItem.setName(itemDTO.getName());
-        existingItem.setItemCategory(this.itemCategoryRepository.findByName(itemDTO.getItemCategoryName()).get());
-        existingItem.setPrice(itemDTO.getPrice());
-        existingItem.setCost(itemDTO.getCost());
-        existingItem.setDescription(itemDTO.getDescription());
-        existingItem.setImgPath(itemDTO.getImgPath());
-        return itemMapper.toDTO(itemRepository.save(existingItem));
+        Item item = null;
+        if (existingItem instanceof FoodItem) {
+            item = new FoodItem();
+            BeanUtils.copyProperties(itemDTO, item);
+        } else if (existingItem instanceof DrinkItem) {
+            item = new DrinkItem();
+            BeanUtils.copyProperties(itemDTO, item);
+        }
+        item.setItemCategory(this.itemCategoryRepository.findByName(itemDTO.getItemCategoryName()).get());
+
+        return itemMapper.toDTO(itemRepository.save(item));
     }
     @Override
     public List<ItemDTO> getAllItems() {
-
         List<Item> items = itemRepository.findAll();
         return items.stream().map(itemMapper::toDTO).collect(Collectors.toList());
     }

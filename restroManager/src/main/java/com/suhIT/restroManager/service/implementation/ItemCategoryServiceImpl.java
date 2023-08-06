@@ -39,9 +39,15 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
     }
 
     @Override
-    public ItemCategoryDTO updateItemCategory(String name, ItemCategoryDTO itemDTO) {
-        //TODO: IMPLEMENT updateItemCategory !!!
-        return null;
+    public ItemCategoryDTO updateItemCategory(Long id, ItemCategoryDTO itemCategoryDTO) {
+
+        ItemCategory existingCat = itemCategoryRepository.findById(id).orElseThrow(
+                () -> new ItemCategoryNotFound(HttpStatus.NOT_FOUND,
+                        "Item category with id " + id + " not found!"
+                ));
+        existingCat.setName(itemCategoryDTO.getName());
+        existingCat.setActive(itemCategoryDTO.isActive());
+        return itemCategoryMapper.toDTO(itemCategoryRepository.save(existingCat));
     }
     @Override
     public void validateUniqueItemCategoryName(String name) {

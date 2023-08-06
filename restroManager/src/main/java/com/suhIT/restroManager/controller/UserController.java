@@ -39,10 +39,15 @@ public class UserController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<Object> create(@Valid @RequestBody UserDTO dto) {
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody UserDTO dto) {
+        try {
+            UserDTO userDTO = userService.createUser(dto);
+            return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
+        }catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
-        return new ResponseEntity<>(userService.createUser(dto), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{username}")
@@ -65,6 +70,14 @@ public class UserController {
         userService.activateUser(username);
         return new ResponseEntity<>("User successfully activated again!", HttpStatus.OK);
     }
+
+    @GetMapping("/allWaiterUsernames")
+    public ResponseEntity<List<String>> getAllWaiterUsernames() {
+        List<String> allUsernames = this.userService.getAllWaiterUsernames();
+        return new ResponseEntity<>(allUsernames, HttpStatus.OK);
+
+    }
+
 
 
 }

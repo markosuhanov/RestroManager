@@ -35,6 +35,5 @@ public class OrderedItem {
     private Ordering ordering;
 
 
-
     private boolean active;
 }

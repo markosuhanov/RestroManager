@@ -44,6 +44,8 @@ public class DinnerTableServiceImpl implements DinnerTableService {
         return this.dinnerTableRepository.findAll().stream().map(dinnerTableMapper::toDTO).collect(Collectors.toList());
     }
 
+
+
     @Override
     public List<DinnerTableDTO> getAllAvailableTables() {
         List<DinnerTable> dinnerTables = dinnerTableRepository.findAllByIsAvailableIsTrue()

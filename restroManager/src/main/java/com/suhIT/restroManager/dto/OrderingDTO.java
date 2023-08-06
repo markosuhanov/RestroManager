@@ -29,5 +29,10 @@ public class OrderingDTO {
 
     private UserDTO waiter;
 
-    private boolean isPlaced;
+    private UserDTO cook;
+
+    private UserDTO bartender;
+
+
+    private boolean placed;
 }
