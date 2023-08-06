@@ -1,13 +1,10 @@
 package com.suhIT.restroManager.controller;
 
 import com.suhIT.restroManager.dto.ItemDTO;
-import com.suhIT.restroManager.dto.UserDTO;
-import com.suhIT.restroManager.model.Item;
 import com.suhIT.restroManager.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,21 +23,24 @@ public class ItemController {
     }
 
     @PostMapping("/{itemType}")
-    public ResponseEntity<ItemDTO> create(@Valid @RequestBody ItemDTO itemDTO, @PathVariable("itemType") String itemType) {
-        ItemDTO item = itemService.createItem(itemDTO, itemType);
-        return new ResponseEntity<>(item, HttpStatus.OK);
+    public ResponseEntity<?> create(@Valid @RequestBody ItemDTO itemDTO, @PathVariable("itemType") String itemType) {
+        try {
+            ItemDTO item = itemService.createItem(itemDTO, itemType);
+            return new ResponseEntity<>(item, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 
-
     @GetMapping("/{itemName}")
-    public ResponseEntity<ItemDTO> getByName( @PathVariable("itemName") String itemName) {
+    public ResponseEntity<ItemDTO> getByName(@PathVariable("itemName") String itemName) {
         ItemDTO itemDto = itemService.getItemByName(itemName);
         return new ResponseEntity<>(itemDto, HttpStatus.OK);
     }
 
     @GetMapping("/id/{itemId}")
-    public ResponseEntity<ItemDTO> getById( @PathVariable("itemId") Long itemId) {
+    public ResponseEntity<ItemDTO> getById(@PathVariable("itemId") Long itemId) {
         ItemDTO itemDto = itemService.getItemById(itemId);
         return new ResponseEntity<>(itemDto, HttpStatus.OK);
     }
@@ -75,6 +75,7 @@ public class ItemController {
         List<ItemDTO> items = itemService.getAllDrinkItems();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
+
     @GetMapping("/allActiveDrink")
     public ResponseEntity<List<ItemDTO>> getAllActiveDrinkItems() {
         List<ItemDTO> items = itemService.getAllActiveDrinkItems();

@@ -139,6 +139,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(dinnerTableNotFoundException.getMessage(), dinnerTableNotFoundException.getHttpStatus());
     }
 
+    @ExceptionHandler(value = RoleNotFoundException.class)
+    public ResponseEntity<String> handleRoleNotFoundException(
+            RoleNotFoundException roleNotFoundException) {
+        return new ResponseEntity<String>(roleNotFoundException.getMessage(), roleNotFoundException.getHttpStatus());
+    }
+
 
 
 

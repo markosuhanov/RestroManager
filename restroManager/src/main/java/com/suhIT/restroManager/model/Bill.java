@@ -22,7 +22,19 @@ public class Bill {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String waiter;
+    @ManyToOne
+    @JoinColumn(name = "waiter_id")
+    private User waiter;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cook_id")
+    private User cook;
+
+
+    @ManyToOne
+    @JoinColumn(name = "bartender_id")
+    private User bartender;
 
     @ManyToMany
     private List<Item> items;

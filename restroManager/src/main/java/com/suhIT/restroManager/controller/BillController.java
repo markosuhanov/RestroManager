@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -24,8 +24,22 @@ public class BillController {
     }
 
     @PostMapping
-    public ResponseEntity<BillDTO> create(@Valid @RequestBody OrderingDTO orderingDTO) {
+    public ResponseEntity<BillDTO> create(@RequestBody OrderingDTO orderingDTO) {
+        System.out.println("AAA");
+        System.out.println(orderingDTO.toString());
         BillDTO billDto = billService.createBill(orderingDTO);
         return new ResponseEntity<>(billDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<BillDTO>> getAll() {
+        List<BillDTO> bills = billService.getAll();
+        return new ResponseEntity<>(bills, HttpStatus.OK);
+    }
+
+    @GetMapping("/{billId}")
+    public ResponseEntity<BillDTO> getById( @PathVariable("billId") Long billId) {
+        BillDTO billDTO = billService.getById(billId);
+        return new ResponseEntity<>(billDTO, HttpStatus.OK);
     }
 }

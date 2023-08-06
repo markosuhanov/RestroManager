@@ -21,8 +21,5 @@ public class OrderedItemController {
         this.orderedItemService = orderedItemService;
     }
 
-    @PatchMapping("/{id}/prepared")
-    public ResponseEntity<OrderedItemDTO> orderedItemPrepared(@PathVariable("id") Long orderedItemId) {
-        return new ResponseEntity<>(orderedItemService.orderedItemPrepared(orderedItemId), HttpStatus.OK);
-    }
+
 }

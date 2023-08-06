@@ -1,6 +1,7 @@
 package com.suhIT.restroManager.service;
 
 import com.suhIT.restroManager.dto.DinnerTableDTO;
+import com.suhIT.restroManager.model.DinnerTable;
 
 import java.util.List;
 
@@ -12,5 +13,6 @@ public interface DinnerTableService {
     DinnerTableDTO setAsBusy(String name);
 
     DinnerTableDTO setAsFree(String name);
+
 
 }

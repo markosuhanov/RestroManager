@@ -32,6 +32,7 @@ public class ItemCategoryMapper implements Mapper<ItemCategory, ItemCategoryDTO>
     @Override
     public ItemCategoryDTO toDTO(ItemCategory itemCategory) {
         return ItemCategoryDTO.builder()
+                .id(itemCategory.getId())
                 .name(itemCategory.getName())
                 .active(itemCategory.isActive())
                 .build();

@@ -2,7 +2,9 @@ package com.suhIT.restroManager.service.implementation;
 
 import com.suhIT.restroManager.dto.OrderedItemDTO;
 import com.suhIT.restroManager.dto.OrderingDTO;
+import com.suhIT.restroManager.dto.UserDTO;
 import com.suhIT.restroManager.exception.NotAllItemsPreparedException;
+import com.suhIT.restroManager.exception.OrderedItemNotFound;
 import com.suhIT.restroManager.exception.OrderingNotFoundException;
 import com.suhIT.restroManager.exception.TableNotFoundException;
 import com.suhIT.restroManager.mapper.OrderedItemMapper;
@@ -77,12 +79,15 @@ public class OrderingServiceImpl implements OrderingService {
         Ordering newOrdering = Ordering.builder()
                 .table(table)
                 .waiter(waiter)
+                .cook(null)
+                .bartender(null)
                 .orderedItems(orderedItems)
                 .price(totalPrice)
                 .cost(totalCost)
                 .isPlaced(isPlaced)
                 .build();
         this.dinnerTableService.setAsBusy(table.getName());
+        this.dinnerTableRepository.save(table);
         return orderingMapper.toDTO(orderingRepository.save(newOrdering));
     }
 
@@ -178,8 +183,24 @@ public class OrderingServiceImpl implements OrderingService {
         ordering.setPrice(newOrderedItems.stream().mapToDouble(orderedItem -> orderedItem.getItem().getPrice()).sum());
         ordering.setCost(newOrderedItems.stream().mapToDouble(orderedItem -> orderedItem.getItem().getCost()).sum());
         ordering.setTable(this.dinnerTableRepository.findByName(ordering.getTable().getName()).get());
-        ordering.setPlaced(orderingDTO.isPlaced());
+
+        boolean arePrepared =  ordering.getOrderedItems().stream().allMatch(OrderedItem::isPrepared);
+        ordering.setPlaced(arePrepared);
         return this.orderingMapper.toDTO(this.orderingRepository.save(ordering));
+    }
+
+    public void changingIsPlaced(Long orderingId) {
+        Ordering ordering = this.orderingRepository.findById(orderingId).orElse(null);
+        if (ordering != null) {
+            boolean arePrepared =  ordering.getOrderedItems().stream().allMatch(OrderedItem::isPrepared);
+            if (arePrepared) {
+                ordering.setPlaced(true);
+            }else{
+                ordering.setPlaced(false);
+            }
+            this.orderingRepository.save(ordering);
+
+        }
     }
 
     @Override
@@ -195,5 +216,42 @@ public class OrderingServiceImpl implements OrderingService {
         }
         return orderingMapper.toDTO(ordering);
     }
+
+    @Override
+    public OrderingDTO takeOrder(Long orderingId) {
+        Ordering ordering = this.orderingRepository.findById(orderingId).orElseThrow(
+                () -> new OrderingNotFoundException(HttpStatus.NOT_FOUND,
+                        "Ordering where id is " + orderingId + " not found!"
+                ));
+        UserDTO user = userService.getLoggedUser();
+        if (user.getRole().equals(Role.BARTENDER)) {
+            ordering.setBartender(userMapper.toEntity(user));
+        } else if (user.getRole().equals(Role.COOK)) {
+            ordering.setCook(userMapper.toEntity(user));
+        }
+        return orderingMapper.toDTO(orderingRepository.save(ordering));
+    }
+
+    @Override
+    public OrderedItemDTO orderedItemPrepared(Long orderedItemId) {
+        OrderedItem orderedItem = orderedItemRepository.findById(orderedItemId).orElseThrow(
+                () -> new OrderedItemNotFound(HttpStatus.NOT_FOUND,
+                        "Ordered item with id " + orderedItemId + " not found!"
+                ));
+        orderedItem.setPrepared(true);
+        OrderedItem preparedOrderedItem = orderedItemRepository.save(orderedItem);
+        changingIsPlaced(preparedOrderedItem.getOrdering().getId());
+        return orderedItemMapper.toDTO(orderedItemRepository.save(preparedOrderedItem));
+    }
+
+    @Override
+    public boolean isOrderPlaced(Long orderingId) {
+        Ordering ordering = this.orderingRepository.findById(orderingId).orElse(null);
+        if (ordering != null) {
+            return ordering.isPlaced();
+        }
+        return false;
+    }
+
 
 }

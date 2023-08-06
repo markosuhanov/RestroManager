@@ -25,4 +25,10 @@ public interface OrderingService {
     OrderingDTO updateOrder(OrderingDTO orderingDTO);
 
     OrderingDTO getByTableName(String tableName);
+
+    OrderingDTO takeOrder(Long orderingId);
+
+    OrderedItemDTO orderedItemPrepared(Long orderedItemId);
+
+    boolean isOrderPlaced(Long orderingId);
 }

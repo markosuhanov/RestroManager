@@ -18,21 +18,22 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Builder
 public class UserDTO {
-    @NotBlank(message = "First name is required")
+    private Long id;
+//    @NotBlank(message = "First name is required")
     private String firstName;
-    @NotBlank(message = "Last name is required")
+//    @NotBlank(message = "Last name is required")
     private String lastName;
-    @NotBlank(message = "Username is required")
-    @Size(min = 6, message = "The username must contain at least 6 characters!")
+//    @NotBlank(message = "Username is required")
+//    @Size(min = 6, message = "The username must contain at least 6 characters!")
     private String username;
-    @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email format")
+//    @NotBlank(message = "Email is required")
+//    @Email(message = "Invalid email format")
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    @NotNull(message = "Role is required")
+//    @Enumerated(EnumType.STRING)
+//    @NotNull(message = "Role is required")
     private Role role;
-    @NotNull(message = "User activity is required")
+//    @NotNull(message = "User activity is required")
     private boolean active;
     private String JWTToken;
 

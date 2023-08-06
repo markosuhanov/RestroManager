@@ -29,10 +29,14 @@ public class Ordering {
     @OneToOne
     private DinnerTable table;
 
-
     @ManyToOne
     private User waiter;
 
+    @ManyToOne
+    private User cook;
+
+    @ManyToOne
+    private User bartender;
 
     private boolean isPlaced;
 }

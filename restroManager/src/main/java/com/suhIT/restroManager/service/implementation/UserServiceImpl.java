@@ -2,9 +2,11 @@ package com.suhIT.restroManager.service.implementation;
 
 import com.suhIT.restroManager.dto.UserDTO;
 import com.suhIT.restroManager.exception.NoSuchElementException;
+import com.suhIT.restroManager.exception.RoleNotFoundException;
 import com.suhIT.restroManager.exception.UserAlreadyExists;
 import com.suhIT.restroManager.exception.UserNotFoundException;
 import com.suhIT.restroManager.mapper.UserMapper;
+import com.suhIT.restroManager.model.Role;
 import com.suhIT.restroManager.model.User;
 import com.suhIT.restroManager.repository.UserRepository;
 import com.suhIT.restroManager.service.UserService;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,14 +41,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO createUser(UserDTO userDTO) {
         validateUniqueUsername(userDTO.getUsername());
+        EnumSet<Role> allowedRoles = EnumSet.of(Role.ADMIN, Role.MANAGER, Role.COOK, Role.WAITER, Role.BARTENDER, Role.ROOM_MANAGER, Role.DIRECTOR);
+        if(!allowedRoles.contains(userDTO.getRole())){
+            throw new RoleNotFoundException(HttpStatus.BAD_REQUEST,
+                    "Role " + userDTO.getRole().name() + " doesnt exist!"
+            );
+        }
+
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String pass = passwordEncoder.encode(userDTO.getPassword());
 
-        User user = User.builder().firstName(userDTO.getFirstName()).lastName(userDTO.getLastName())
-                .username(userDTO.getUsername()).email(userDTO.getEmail()).password(pass)
-                .role(userDTO.getRole()).active(userDTO.isActive()).build();
+        User user = new User();
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(pass);
+        user.setActive(userDTO.isActive());
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setUsername(userDTO.getUsername());
+        user.setRole(userDTO.getRole());
         UserDTO userDTOnew = userMapper.toDTO(userRepository.save(user));
-        userDTOnew.setPassword(null);
         return userDTOnew;
     }
 
@@ -138,6 +152,10 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public List<String> getAllWaiterUsernames() {
+        return this.userRepository.findUsernamesByWaiterRole();
+    }
 
 
     // Validate if the username already exists
