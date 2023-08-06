@@ -22,7 +22,7 @@ INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (2
 
 -- Salary data for user with ID 97455634890 (Marko Nikolic)
 INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (4932453214, 6000, '2023-01-01', '2023-01-31', 9745563489, false);
-INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (2345678901, 4200, '2023-02-01', null, 9745563489, true);
+INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (2344528901, 4200, '2023-02-01', null, 9745563489, true);
 
 -- Salary data for user with ID 234567890 (Aleksandar Aleksic)
 INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (3456789011, 1800, '2023-01-01', '2023-01-31', 234567890, false);
@@ -38,7 +38,7 @@ INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (8
 
 -- Salary data for user with ID 567890123 (Mihajlo Mihajlovic)
 INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (9012345671, 2200, '2023-01-01', '2023-01-31', 567890123, false);
-INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (12345678901, 2300, '2023-02-01', null, 567890123, true);
+INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (12355678901, 2300, '2023-02-01', null, 567890123, true);
 
 -- Salary data for user with ID 678901234 (Sara Savic)
 INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (23456765011, 1600, '2023-01-01', '2023-01-31', 678901234, false);
@@ -58,7 +58,7 @@ INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (9
 
 -- Salary data for user with ID 1234567890 (Olivera Obradovic)
 INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (12345678904, 1400, '2023-01-01', '2023-01-31', 1234567890, false);
-INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (23456789011, 1500, '2023-02-01', null, 1234567890, true);
+INSERT INTO salary (id, amount, start_date, end_date, user_id, active) VALUES (23456734011, 1500, '2023-02-01', null, 1234567890, true);
 
 # -- ~~~~~~~~~~~~~~~~~~~ITEM CATEGORIES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
