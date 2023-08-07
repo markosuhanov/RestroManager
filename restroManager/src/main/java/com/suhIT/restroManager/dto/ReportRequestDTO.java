@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @Builder
 public class ReportRequestDTO {
 
-    private LocalDateTime from;
-    private LocalDateTime to;
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateUntil;
     private ItemDTO itemDTO;
     private UserDTO userDTO;
 }

@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 public class ItemReportDTO {
 
     private ItemDTO itemDTO;
-    private LocalDateTime from;
-    private LocalDateTime to;
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateUntil;
     private int totalItemSold;
     private double totalPrice;
     private double totalCost;
