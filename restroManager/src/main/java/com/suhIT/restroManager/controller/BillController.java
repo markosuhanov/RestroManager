@@ -7,6 +7,7 @@ import com.suhIT.restroManager.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class BillController {
     }
 
     @PostMapping
+    //@PreAuthorize("hasRole('WAITER')")
     public ResponseEntity<BillDTO> create(@RequestBody OrderingDTO orderingDTO) {
         System.out.println("AAA");
         System.out.println(orderingDTO.toString());

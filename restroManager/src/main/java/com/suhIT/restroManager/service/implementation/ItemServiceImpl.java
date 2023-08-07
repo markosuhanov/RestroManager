@@ -81,6 +81,8 @@ public class ItemServiceImpl implements ItemService {
         if (!existingItem.getName().equals(itemDTO.getName())) {
             validateUniqueItemName(itemDTO.getName());
         }
+        existingItem.setActive(false);
+        itemRepository.save(existingItem);
 
         Item item = null;
         if (existingItem instanceof FoodItem) {
@@ -90,6 +92,8 @@ public class ItemServiceImpl implements ItemService {
             item = new DrinkItem();
             BeanUtils.copyProperties(itemDTO, item);
         }
+        item.setActive(true);
+        item.setId(null);
         item.setItemCategory(this.itemCategoryRepository.findByName(itemDTO.getItemCategoryName()).get());
 
         return itemMapper.toDTO(itemRepository.save(item));

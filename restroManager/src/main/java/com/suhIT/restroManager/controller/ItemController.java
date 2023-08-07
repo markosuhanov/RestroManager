@@ -5,6 +5,7 @@ import com.suhIT.restroManager.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -50,7 +51,7 @@ public class ItemController {
         List<ItemDTO> items = itemService.getAllItems();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
-
+    //@PreAuthorize("hasRole('WAITER')")
     @GetMapping("/allActive")
     public ResponseEntity<List<ItemDTO>> getAllActive() {
         List<ItemDTO> items = itemService.getAllActiveItems();
