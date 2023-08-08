@@ -135,7 +135,12 @@ public class OrderingServiceImpl implements OrderingService {
 
     @Override
     public void deleteById(Long id) {
+
+        Ordering ordering = orderingRepository.findById(id).orElseThrow(
+                () -> new OrderingNotFoundException(HttpStatus.NOT_FOUND, "Order with id " + id + " not found"));
         orderingRepository.deleteById(id);
+
+        this.dinnerTableService.setAsFree(ordering.getTable().getName());
     }
 
     @Override
