@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 @Builder
 public class ItemReportDTO {
 
-    private ItemDTO itemDTO;
+    private Long itemId;
+    private String itemName;
     private LocalDateTime dateFrom;
     private LocalDateTime dateUntil;
     private int totalItemSold;

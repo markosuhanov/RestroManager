@@ -14,7 +14,9 @@ import java.time.LocalDateTime;
 @Builder
 public class UserReportDTO {
 
-    private UserDTO userDTO;
+    private Long userId;
+    private String fullName;
+    private String username;
     private LocalDateTime dateFrom;
     private LocalDateTime dateUntil;
     private int numberOfBills;

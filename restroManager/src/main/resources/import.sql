@@ -121,8 +121,13 @@ INSERT INTO  restro_manager_db.item (id, name, description, price, cost, active,
 INSERT INTO  restro_manager_db.item (id, name, description, price, cost, active, img_path, item_category_id, allergens, prep_time, item_type) VALUES (456789012345679, 'Latte', 'Kafa sa mlekom i mlečnom penu', 250.0, 67.5, true, null, 7890123456789012, 'Mleko', 4, 'drink');
 #
 
-INSERT INTO  restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (12345, 'Table1', 10, 15, 0 , 0, true);
-INSERT INTO  restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (23456, 'Table2', 10, 15, 0 , 0, true);
-INSERT INTO  restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (34567, 'Table3', 10, 15, 0 , 0, true);
-INSERT INTO  restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (45678, 'Table4', 10, 15, 0 , 0, false);
-INSERT INTO  restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (56789, 'Table5', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (12345, 'Table No1', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (23456, 'Table No2', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (34567, 'Table No3', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (45678, 'Table No4', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (56789, 'Table No5', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (67890, 'Table No6', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (78901, 'Table No7', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (89012, 'Table No8', 10, 15, 0 , 0, true);
+INSERT INTO restro_manager_db.dinner_table (id, name, x, y, width, height, is_available) VALUES (90123, 'Table No9', 10, 15, 0 , 0, true);
+
