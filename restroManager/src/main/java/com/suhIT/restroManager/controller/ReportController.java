@@ -2,6 +2,7 @@ package com.suhIT.restroManager.controller;
 
 import com.suhIT.restroManager.dto.ItemReportDTO;
 import com.suhIT.restroManager.dto.ReportRequestDTO;
+import com.suhIT.restroManager.dto.UserReportDTO;
 import com.suhIT.restroManager.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,4 +25,11 @@ public class ReportController {
     public ResponseEntity<ItemReportDTO> getItemReport(@RequestBody() ReportRequestDTO reportRequest) {
         return new ResponseEntity<>(reportService.createForItem(reportRequest), HttpStatus.OK);
     }
+
+    @PostMapping("/user")
+    public ResponseEntity<UserReportDTO> getUserReport(@RequestBody() ReportRequestDTO reportRequest) {
+        return new ResponseEntity<>(reportService.createForUser(reportRequest), HttpStatus.OK);
+    }
+
+
 }
