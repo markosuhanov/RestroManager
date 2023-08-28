@@ -7,6 +7,7 @@ import com.suhIT.restroManager.service.OrderingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ public class OrderingController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('WAITER')")
     public ResponseEntity<OrderingDTO> create(@Valid @RequestBody OrderingDTO orderingDTO) {
         return new ResponseEntity<>(orderingService.createOrder(orderingDTO), HttpStatus.CREATED);
     }
