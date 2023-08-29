@@ -18,14 +18,10 @@ public class ItemDTO {
 
 
     private Long id;
-    @NotBlank(message = "Item name is required")
     private String name;
     private String description;
-    @DecimalMin(value = "0.0", message = "Price must be a positive number!")
     private double price;
-    @DecimalMin(value = "0.0", message = "Cost of item must be a positive number!")
     private double cost;
-    @NotNull(message = "You have set existence of item!")
     private boolean active;
     private String imgPath;
     private String itemType;
