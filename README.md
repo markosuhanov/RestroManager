@@ -8,6 +8,9 @@
 
 **Technologies:** Spring Boot & Angular  
 **Database:** MySQL
+**Frontend app:** https://github.com/markosuhanov/restroManager_FE
+
+
 
 
 ## Purpose
