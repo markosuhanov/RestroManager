@@ -6,6 +6,10 @@
 **Project:** *Restaurant Management System*  
 **Student:** __Marko Suhanov__  
 
+**Technologies:** Spring Boot & Angular  
+**Database:** MySQL
+
+
 ## Purpose
 The project aims to implement a web application serving as a centralized information system for a restaurant. Accessible by restaurant staff and an administrator for technical support, the system's primary purpose is to streamline order processing, menu updates, report generation, and employee management.
 
